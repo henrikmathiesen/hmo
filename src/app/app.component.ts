@@ -10,6 +10,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements AfterViewInit {
 
+  title = 'Hjälp med OCD!';
+
   ngAfterViewInit(): void {
     (window as any).feather.replace();
   }
