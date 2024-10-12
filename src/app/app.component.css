@@ -1,0 +1,11 @@
+.app-container {
+    height: 100%;
+}
+
+.app-heart {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -66px;
+    right: -10px;
+}

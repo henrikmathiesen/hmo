@@ -1,1 +1,30 @@
-<router-outlet />
+<div class="container d-flex flex-column app-container">
+    <header class="row flex-shrink-0 py-5 bg-primary text-white">
+        <div class="col-auto">
+            <h1 class="display-1">Hjälp med OCD!</h1>
+        </div>
+        <div class="col">
+            <span data-feather="heart" class="app-heart"></span>            
+        </div>
+    </header>
+    <nav class="row bg-primary flex-shrink-0">
+        <div class="col">
+            <div class="btn-group btn-group-lg" role="group" aria-label="Navigera">
+                <button type="button" class="btn btn-primary">Om OCD</button>
+                <button type="button" class="btn btn-primary">Självtest</button>
+                <button type="button" class="btn btn-primary">Terapin</button>
+                <button type="button" class="btn btn-primary">Kontakt</button>
+              </div>
+        </div>
+    </nav>
+    <main class="row flex-grow-1">
+        <div class="col">
+            <router-outlet />
+        </div>
+    </main>
+    <footer class="row flex-shrink-0 bg-primary text-white text-center">
+        <div class="col">
+            Henrik Mathiesen, 2024
+        </div>
+    </footer>
+</div>
