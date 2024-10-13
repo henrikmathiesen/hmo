@@ -1,24 +1,24 @@
 <div class="container d-flex flex-column app-container">
-    <header class="row flex-shrink-0 py-5 bg-primary text-white d-none d-md-flex">
-        <div class="col-auto">
-            <h1 class="display-1">{{ title }}</h1>
+    <header class="row flex-shrink-0 bg-primary text-white d-none d-md-flex">
+        <div class="col-auto pt-5 pb-4">
+            <h1 class="display-1 app-display-1">{{ title }}</h1>
         </div>
-        <div class="col">
+        <div class="col text-right">
             <span data-feather="heart" class="app-heart-md"></span>     
         </div>
     </header>
-    <header class="row flex-shrink-0 py-3 bg-primary text-white d-md-none">
-        <div class="col-auto">
+    <header class="row flex-shrink-0 bg-primary text-white d-md-none">
+        <div class="col-auto py-3">
             <h1 class="display-4 app-display-4">{{ title }}</h1>
         </div>
-        <div class="col">
+        <div class="col text-right">
             <span data-feather="heart" class="app-heart"></span>         
         </div>
     </header>
     <nav class="row bg-primary flex-shrink-0 pb-2 d-none d-md-flex">
         <div class="col">
             <div class="btn-group btn-group-lg" role="group" aria-label="Navigera">
-                <button type="button" class="btn btn-primary">Om OCD</button>
+                <button type="button" class="btn btn-primary">Om diagnosen</button>
                 <button type="button" class="btn btn-primary">Självtest</button>
                 <button type="button" class="btn btn-primary">Terapin</button>
                 <button type="button" class="btn btn-primary">Kontakt</button>
@@ -28,7 +28,7 @@
     <nav class="row bg-primary flex-shrink-0 pb-2 d-md-none">
         <div class="col">
             <div class="btn-group btn-group-sm" role="group" aria-label="Navigera">
-                <button type="button" class="btn btn-primary">Om OCD</button>
+                <button type="button" class="btn btn-primary">Om diagnosen</button>
                 <button type="button" class="btn btn-primary">Självtest</button>
                 <button type="button" class="btn btn-primary">Terapin</button>
                 <button type="button" class="btn btn-primary">Kontakt</button>
@@ -46,3 +46,13 @@
         </div>
     </footer>
 </div>
+
+<!--
+
+    TODOs
+
+    Refaktorera till componenter...
+    Puffar för varje länk
+    Kolla tablet
+
+-->
