@@ -1,0 +1,5 @@
+.app-card-shadow-for-bg-light {
+    -webkit-box-shadow: 1px 1px 4px 0px rgba(255,192,203,0.5);
+    -moz-box-shadow: 1px 1px 4px 0px rgba(255,192,203,0.5);
+    box-shadow: 1px 1px 4px 0px rgba(255,192,203,0.5);
+}
