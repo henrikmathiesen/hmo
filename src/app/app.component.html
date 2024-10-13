@@ -4,7 +4,7 @@
             <h1 class="display-1 app-display-1">{{ title }}</h1>
         </div>
         <div class="col text-right">
-            <span data-feather="heart" class="app-heart-md"></span>     
+            <span data-feather="heart" class="app-heart-md"></span>
         </div>
     </header>
     <header class="row flex-shrink-0 bg-primary text-white d-md-none">
@@ -12,27 +12,17 @@
             <h1 class="display-4 app-display-4">{{ title }}</h1>
         </div>
         <div class="col text-right">
-            <span data-feather="heart" class="app-heart"></span>         
+            <span data-feather="heart" class="app-heart"></span>
         </div>
     </header>
     <nav class="row bg-primary flex-shrink-0 pb-2 d-none d-md-flex">
         <div class="col">
-            <div class="btn-group btn-group-lg" role="group" aria-label="Navigera">
-                <button type="button" class="btn btn-primary">Om diagnosen</button>
-                <button type="button" class="btn btn-primary">Självtest</button>
-                <button type="button" class="btn btn-primary">Terapin</button>
-                <button type="button" class="btn btn-primary">Kontakt</button>
-              </div>
+            <app-nav [sizeCssClass]="'btn-group-lg'"></app-nav>
         </div>
     </nav>
     <nav class="row bg-primary flex-shrink-0 pb-2 d-md-none">
         <div class="col">
-            <div class="btn-group btn-group-sm" role="group" aria-label="Navigera">
-                <button type="button" class="btn btn-primary">Om diagnosen</button>
-                <button type="button" class="btn btn-primary">Självtest</button>
-                <button type="button" class="btn btn-primary">Terapin</button>
-                <button type="button" class="btn btn-primary">Kontakt</button>
-              </div>
+            <app-nav [sizeCssClass]="'btn-group-sm'"></app-nav>
         </div>
     </nav>
     <main class="row flex-grow-1">
