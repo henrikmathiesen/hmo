@@ -1,27 +1,36 @@
 <form class="row" [formGroup]="testForm" (ngSubmit)="onSubmit()">
     <div class="col-md-6">
-        <div class="form-group" formArrayName="sectionA">
-            <div *ngFor="let arr of getArrayForSection('sectionA').controls; let i=index" class="custom-control custom-checkbox">
+        <fieldset class="form-group" formArrayName="sectionA">
+            <legend class="h4 mb-3">Sektion A</legend>
+            <div *ngFor="let arr of getArrayForSection('sectionA').controls; let i = index; let isLast = last"
+                class="custom-control custom-checkbox" [ngClass]="{ 'mb-2': !isLast }">
                 <input type="checkbox" class="custom-control-input" id="a-{{ i }}" [formControlName]="i">
                 <label for="a-{{ i }}" class="custom-control-label">{{ getLabelForSection('sectionA', i) }}</label>
             </div>
-        </div>
+        </fieldset>
     </div>
     <div class="col-md-6">
-        <div class="form-group" formArrayName="sectionB">
-            <div *ngFor="let arr of getArrayForSection('sectionB').controls; let i=index" class="custom-control custom-checkbox">
+        <fieldset class="form-group" formArrayName="sectionB">
+            <legend class="h4 mb-3">Sektion B</legend>
+            <div *ngFor="let arr of getArrayForSection('sectionB').controls; let i = index; let isLast = last"
+                class="custom-control custom-checkbox" [ngClass]="{ 'mb-2': !isLast }">
                 <input type="checkbox" class="custom-control-input" id="b-{{ i }}" [formControlName]="i">
                 <label for="b-{{ i }}" class="custom-control-label">{{ getLabelForSection('sectionB', i) }}</label>
             </div>
-        </div>
-        <div class="form-group" formArrayName="sectionC">
-            <div *ngFor="let arr of getArrayForSection('sectionC').controls; let i=index" class="custom-control custom-checkbox">
+        </fieldset>
+        <fieldset class="form-group" formArrayName="sectionC">
+            <legend class="h4 mb-3">Sektion C</legend>
+            <div *ngFor="let arr of getArrayForSection('sectionC').controls; let i = index; let isLast = last"
+                class="custom-control custom-checkbox" [ngClass]="{ 'mb-2': !isLast }">
                 <input type="checkbox" class="custom-control-input" id="c-{{ i }}" [formControlName]="i">
                 <label for="c-{{ i }}" class="custom-control-label">{{ getLabelForSection('sectionC', i) }}</label>
             </div>
+        </fieldset>
+        <div class="text-right">
+            <button class="btn btn-lg btn-primary">Jag kanske har OCD</button>
         </div>
-        <div>
-            <button class="btn btn-primary">Jag kanske har OCD</button>
+        <div class="text-right mt-5">
+            <app-quote [p]="'Från boken Tvångssyndrom (med tillåtelse)'" [f]="'Olle Wadström, 2017'"></app-quote>
         </div>
     </div>
 </form>

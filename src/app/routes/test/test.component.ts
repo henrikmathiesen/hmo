@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { NgFor, NgClass } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import { QuoteComponent } from '../../components';
 
 @Component({
     selector: 'app-test',
     standalone: true,
-    imports: [ReactiveFormsModule, NgFor],
+    imports: [ReactiveFormsModule, NgFor, NgClass, QuoteComponent],
     templateUrl: './test.component.html'
 })
 export class TestComponent {
