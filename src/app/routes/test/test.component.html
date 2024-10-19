@@ -1,1 +1,27 @@
-<h2>Test</h2>
+<form class="row" [formGroup]="testForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-6">
+        <div formArrayName="sectionA">
+            <div *ngFor="let arr of getArrayForSection('sectionA').controls; let i=index">
+                <label for="arr-{{ i }}">{{ getLabelForSection('sectionA', i) }}</label>
+                <input id="arr-{{ i }}" type="checkbox" [formControlName]="i">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div formArrayName="sectionB">
+            <div *ngFor="let arr of getArrayForSection('sectionB').controls; let i=index">
+                <label for="arr-{{ i }}">{{ getLabelForSection('sectionB', i) }}</label>
+                <input id="arr-{{ i }}" type="checkbox" [formControlName]="i">
+            </div>
+        </div>
+        <div formArrayName="sectionC">
+            <div *ngFor="let arr of getArrayForSection('sectionC').controls; let i=index">
+                <label for="arr-{{ i }}">{{ getLabelForSection('sectionC', i) }}</label>
+                <input id="arr-{{ i }}" type="checkbox" [formControlName]="i">
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary">Jag kanske har OCD</button>
+        </div>
+    </div>
+</form>
