@@ -1,19 +1,22 @@
 import { Component } from '@angular/core';
-import { NgFor, NgClass } from '@angular/common';
+import { NgFor, NgClass, NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
-import { QuoteComponent } from '../../components';
+import { QuoteComponent, CardComponent } from '../../components';
 
 @Component({
     selector: 'app-test',
     standalone: true,
-    imports: [ReactiveFormsModule, NgFor, NgClass, QuoteComponent],
+    imports: [ReactiveFormsModule, NgFor, NgClass, NgIf, QuoteComponent, CardComponent],
     templateUrl: './test.component.html'
 })
 export class TestComponent {
 
     testForm: FormGroup;
-    testLabels: { sectionA: string[], sectionB: string[], sectionC: string[] };
     hasOCD: null | boolean = null;
+    readonly quoteP = 'Från boken Tvångssyndrom (med tillåtelse)';
+    readonly quoteF = 'Olle Wadström, 2017';
+
+    private testLabels: { sectionA: string[], sectionB: string[], sectionC: string[] };
 
     constructor(private formBuilder: FormBuilder) {
         this.testForm = this.setUpTestForm();
@@ -30,6 +33,10 @@ export class TestComponent {
 
     onSubmit() {
         this.evaluateTest();
+    }
+
+    redoTest() {
+        
     }
 
     private evaluateTest() {

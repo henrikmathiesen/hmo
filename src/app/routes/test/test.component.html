@@ -1,4 +1,4 @@
-<form class="row" [formGroup]="testForm" (ngSubmit)="onSubmit()">
+<form class="row" [formGroup]="testForm" (ngSubmit)="onSubmit()" *ngIf="hasOCD === null">
     <div class="col-md-6">
         <fieldset class="form-group" formArrayName="sectionA">
             <legend class="h4 mb-3">Sektion A</legend>
@@ -30,7 +30,26 @@
             <button class="btn btn-lg btn-primary">Jag kanske har OCD</button>
         </div>
         <div class="text-right mt-5">
-            <app-quote [p]="'Från boken Tvångssyndrom (med tillåtelse)'" [f]="'Olle Wadström, 2017'"></app-quote>
+            <app-quote [p]="quoteP" [f]="quoteF"></app-quote>
         </div>
     </div>
 </form>
+
+<div class="row" *ngIf="hasOCD !== null">
+    <div class="col-md-7">
+        <app-card [header]="'Det kan handla om OCD'" [backgroundCssClass]="'bg-danger'" *ngIf="hasOCD">
+            <p class="card-text">Har du minst ett kryss vardera, under A, B och C, kan det handla om OCD i ditt fall.</p>
+            <p class="card-text">Bäst diagnosställning får du av en psykolog (som kan OCD).</p>
+            <div class="mt-5">
+                <button type="button" class="btn btn-lg btn-primary" (click)="redoTest()">Gör testet igen</button>
+            </div>
+        </app-card>
+        <app-card [header]="'Förmodligen inte OCD'" [backgroundCssClass]="'bg-warning'" *ngIf="!hasOCD">
+            <p class="card-text">Enligt det här testet så har du förmodligen inte OCD.</p>
+            <p class="card-text">Bäst diagnosställning får du av en psykolog (som kan OCD).</p>
+            <div class="mt-5">
+                <button type="button" class="btn btn-lg btn-primary" (click)="redoTest()">Gör testet igen</button>
+            </div>
+        </app-card>
+    </div>
+</div>
