@@ -35,26 +35,20 @@
     </div>
 </form>
 
-<ng-container *ngIf="hasOCD !== null">
-    <div class="row">
-        <div class="col-md-7">
-            <app-card [header]="testResult.header">
-                <p class="card-text">{{ testResult.info }}</p>
-                <div class="mt-5 text-right">
-                    <button type="button" class="btn btn-lg btn-primary" (click)="testReset()">{{ testResult.reset
-                        }}</button>
-                </div>
-            </app-card>
-        </div>
-        <div class="col-md-5 text-center align-content-center">
-            <span data-feather="target" class="app-target" appFeatherIcon></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-7">
-            <div class="text-right mt-5">
+<div class="row" *ngIf="hasOCD !== null">
+    <div class="col-md-7">
+        <app-card [header]="testResult.header">
+            <p class="card-text">{{ testResult.info }}</p>
+            <div class="my-5 text-right">
+                <button type="button" class="btn btn-lg btn-primary" (click)="testReset()">{{ testResult.reset
+                    }}</button>
+            </div>
+            <div class="text-right">
                 <app-quote [p]="quoteP" [f]="quoteF"></app-quote>
             </div>
-        </div>
+        </app-card>
     </div>
-</ng-container>
+    <div class="col-md-5 text-center align-content-center">
+        <span data-feather="target" class="app-target" appFeatherIcon></span>
+    </div>
+</div>
