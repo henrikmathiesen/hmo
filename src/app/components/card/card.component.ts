@@ -11,7 +11,7 @@ import { NgClass } from '@angular/common';
 export class CardComponent implements OnInit {
 
     @Input() header = '';
-    @Input() backgroundCssClass = 'bg-light'; // use bg-light, bg-danger or bg-warning
+    @Input() backgroundCssClass: 'bg-light' | 'bg-danger' | 'bg-warning' = 'bg-light';
     textcolorCssClass = '';
     shadowCssClass = 'app-card-shadow-for-bg-light';
 
