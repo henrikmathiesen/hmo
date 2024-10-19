@@ -1,23 +1,23 @@
 <form class="row" [formGroup]="testForm" (ngSubmit)="onSubmit()">
     <div class="col-md-6">
-        <div formArrayName="sectionA">
-            <div *ngFor="let arr of getArrayForSection('sectionA').controls; let i=index">
-                <label for="arr-{{ i }}">{{ getLabelForSection('sectionA', i) }}</label>
-                <input id="arr-{{ i }}" type="checkbox" [formControlName]="i">
+        <div class="form-group" formArrayName="sectionA">
+            <div *ngFor="let arr of getArrayForSection('sectionA').controls; let i=index" class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="a-{{ i }}" [formControlName]="i">
+                <label for="a-{{ i }}" class="custom-control-label">{{ getLabelForSection('sectionA', i) }}</label>
             </div>
         </div>
     </div>
     <div class="col-md-6">
-        <div formArrayName="sectionB">
-            <div *ngFor="let arr of getArrayForSection('sectionB').controls; let i=index">
-                <label for="arr-{{ i }}">{{ getLabelForSection('sectionB', i) }}</label>
-                <input id="arr-{{ i }}" type="checkbox" [formControlName]="i">
+        <div class="form-group" formArrayName="sectionB">
+            <div *ngFor="let arr of getArrayForSection('sectionB').controls; let i=index" class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="b-{{ i }}" [formControlName]="i">
+                <label for="b-{{ i }}" class="custom-control-label">{{ getLabelForSection('sectionB', i) }}</label>
             </div>
         </div>
-        <div formArrayName="sectionC">
-            <div *ngFor="let arr of getArrayForSection('sectionC').controls; let i=index">
-                <label for="arr-{{ i }}">{{ getLabelForSection('sectionC', i) }}</label>
-                <input id="arr-{{ i }}" type="checkbox" [formControlName]="i">
+        <div class="form-group" formArrayName="sectionC">
+            <div *ngFor="let arr of getArrayForSection('sectionC').controls; let i=index" class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="c-{{ i }}" [formControlName]="i">
+                <label for="c-{{ i }}" class="custom-control-label">{{ getLabelForSection('sectionC', i) }}</label>
             </div>
         </div>
         <div>

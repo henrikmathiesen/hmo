@@ -80,27 +80,27 @@ export class TestComponent {
     private setUpTestLabels() {
         return {
             sectionA: [
-                'A1',
-                'A2',
-                'A3',
-                'A4',
-                'A5',
-                'A6',
-                'A7',
-                'A8',
-                'A9',
-                'A10'
+                'Du tvättar dig extra mycket och är mycket noga med din hygien',
+                'Du kontrollerar spis, kaffebryggare, TV, dörrar, fönster, kranar och annat',
+                'Du plockar ordning, ändrar om, rättar till och känner dig störd av oordning',
+                'Du utför dagligen ritualer (säger ramsor, nynnar, räknar, skriver listor) som egentligen är meningslösa för andra människor',
+                'Vissa aktiviteter tar alltför lång tid för dig (skriva, läsa, betala räkningar, gå på toaletten, berätta något på rätt sätt)',
+                'Du har svårt att kasta saker som du egentligen vet är värdelösa och som andra personer brukar kasta. Du känner dig tveksam om det är viktigt eller värdefullt.',
+                'Du undviker att göra vissa aktiviteter eller hamna i vissa situationer, du känner dig osäker på vad du kanske gör eller vad som kan hända',
+                'Du frågar andra människor runt omkring dig om sådant som du egentligen vet svaret på, men som du trots det vill bli säkrare på. Efter en tid blir de kanske irriterade på dina frågor.',
+                'Du använder andra människor (med eller utan deras medvetenhet) för att lugna dig i saker där du tvivlar',
+                'Du tänker och ältar sådant som du egentligen redan vet svaret på, men ändå inte kan låta bli, trots att det sällan leder någonstans'
             ],
             sectionB: [
-                'B1',
-                'B2',
-                'B3',
-                'B4',
-                'B5',
-                'B6'
+                'Du får ofta stark oro om du inte får utföra det som du kryssat för i föregående sektion',
+                'Du har skrämmande tankar om vad som kan hända om du inte gör något av det som du kryssat för i föregående sektion',
+                'Du har skrämmande tankar om vad du skulle kunna göra eller kan ha gjort',
+                'Du känner dig ofta plågad av tvivel, ångest, oro för sådant som egentligen inte är något att oroa sig för',
+                'Du kan få stark ångest av tanken på att din partner skulle kunna vara otrogen',
+                'Du oroar dig för och tänker på att du kan vara kroppsligt sjuk på något sätt'
             ],
             sectionC: [
-                'C1'
+                'Du har svårt att acceptera eller tåla att känna osäkerhet, tvivel eller oro. Du vill vara helt säker.'
             ]
         }
     }
