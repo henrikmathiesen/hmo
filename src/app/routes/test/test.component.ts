@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { NgFor, NgClass, NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+
 import { QuoteComponent, CardComponent } from '../../components';
+import { FeatherIcon } from '../../directives';
 
 @Component({
     selector: 'app-test',
     standalone: true,
-    imports: [ReactiveFormsModule, NgFor, NgClass, NgIf, QuoteComponent, CardComponent],
-    templateUrl: './test.component.html'
+    imports: [ReactiveFormsModule, NgFor, NgClass, NgIf, QuoteComponent, CardComponent, FeatherIcon],
+    templateUrl: './test.component.html',
+    styleUrls: ['./test.component.css']
 })
 export class TestComponent {
 
@@ -15,6 +18,13 @@ export class TestComponent {
     hasOCD: null | boolean = null;
     readonly quoteP = 'Från boken Tvångssyndrom (med tillåtelse)';
     readonly quoteF = 'Olle Wadström, 2017';
+
+    testResult = {
+        header: '',
+        info: '',
+        disclaimer: 'Bäst diagnosställning får du av en psykolog (som kan OCD).',
+        reset: 'Gör testet igen'
+    };
 
     private testLabels: { sectionA: string[], sectionB: string[], sectionC: string[] };
 
@@ -35,8 +45,9 @@ export class TestComponent {
         this.evaluateTest();
     }
 
-    redoTest() {
-        
+    testReset() {
+        this.testForm.reset();
+        this.hasOCD = null;
     }
 
     private evaluateTest() {
@@ -49,6 +60,14 @@ export class TestComponent {
         const atLeastOneTrueFromSectionCValues = sectionCValues.some(v => v === true);
 
         this.hasOCD = atLeastOneTrueFromSectionAValues && atLeastOneTrueFromSectionBValues && atLeastOneTrueFromSectionCValues;
+
+        if (this.hasOCD) {
+            this.testResult.header = 'Det kan handla om OCD';
+            this.testResult.info = `Har du minst ett kryss vardera, under A, B och C, kan det handla om OCD i ditt fall. ${this.testResult.disclaimer}`;
+        } else {
+            this.testResult.header = 'Förmodligen inte OCD';
+            this.testResult.info = `Enligt det här testet så har du förmodligen inte OCD. ${this.testResult.disclaimer}`;
+        }
     }
 
     private setUpTestForm() {

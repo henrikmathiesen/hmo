@@ -35,21 +35,26 @@
     </div>
 </form>
 
-<div class="row" *ngIf="hasOCD !== null">
-    <div class="col-md-7">
-        <app-card [header]="'Det kan handla om OCD'" [backgroundCssClass]="'bg-danger'" *ngIf="hasOCD">
-            <p class="card-text">Har du minst ett kryss vardera, under A, B och C, kan det handla om OCD i ditt fall.</p>
-            <p class="card-text">Bäst diagnosställning får du av en psykolog (som kan OCD).</p>
-            <div class="mt-5">
-                <button type="button" class="btn btn-lg btn-primary" (click)="redoTest()">Gör testet igen</button>
-            </div>
-        </app-card>
-        <app-card [header]="'Förmodligen inte OCD'" [backgroundCssClass]="'bg-warning'" *ngIf="!hasOCD">
-            <p class="card-text">Enligt det här testet så har du förmodligen inte OCD.</p>
-            <p class="card-text">Bäst diagnosställning får du av en psykolog (som kan OCD).</p>
-            <div class="mt-5">
-                <button type="button" class="btn btn-lg btn-primary" (click)="redoTest()">Gör testet igen</button>
-            </div>
-        </app-card>
+<ng-container *ngIf="hasOCD !== null">
+    <div class="row">
+        <div class="col-md-7">
+            <app-card [header]="testResult.header">
+                <p class="card-text">{{ testResult.info }}</p>
+                <div class="mt-5 text-right">
+                    <button type="button" class="btn btn-lg btn-primary" (click)="testReset()">{{ testResult.reset
+                        }}</button>
+                </div>
+            </app-card>
+        </div>
+        <div class="col-md-5 text-center align-content-center">
+            <span data-feather="target" class="app-target" appFeatherIcon></span>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="text-right mt-5">
+                <app-quote [p]="quoteP" [f]="quoteF"></app-quote>
+            </div>
+        </div>
+    </div>
+</ng-container>
