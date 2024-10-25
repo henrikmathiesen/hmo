@@ -26,8 +26,8 @@
         </div>
     </nav>
     <main class="row flex-grow-1 py-5">
-        <div class="col">
-            <router-outlet />
+        <div class="col" [ngClass]=" { 'px-sm-0': !isStandAloneForm } ">
+            <router-outlet (activate)="onActivate($event)" />
         </div>
     </main>
     <footer class="row flex-shrink-0 bg-primary text-white text-center">

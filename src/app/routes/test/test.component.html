@@ -36,7 +36,7 @@
 </form>
 
 <div class="row" *ngIf="hasOCD !== null">
-    <div class="col-md-7">
+    <div class="col-md-7 offset-md-1">
         <app-card [header]="testResult.header">
             <p class="card-text">{{ testResult.info }}</p>
             <div class="my-5 text-right">
@@ -48,7 +48,7 @@
             </div>
         </app-card>
     </div>
-    <div class="col-md-5 text-center align-content-center">
+    <div class="col-md-4 text-center align-content-center">
         <span data-feather="target" class="app-target" appFeatherIcon></span>
     </div>
 </div>
