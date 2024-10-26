@@ -1,4 +1,4 @@
-import { Directive, OnInit } from '@angular/core';
+import { Directive, OnInit, ElementRef } from '@angular/core';
 
 @Directive({
     standalone: true,
@@ -6,7 +6,12 @@ import { Directive, OnInit } from '@angular/core';
 })
 export class FeatherIcon implements OnInit {
 
+    constructor(
+        private el: ElementRef
+    ){}
+
     ngOnInit(): void {
+        this.el.nativeElement.setAttribute('aria-hidden', 'true');
         (window as any).feather.replace();
     }
 }
