@@ -43,11 +43,17 @@ export class TestComponent {
 
     onSubmit() {
         this.evaluateTest();
+        this.scrollTop();
     }
 
     testReset() {
         this.testForm.reset();
         this.hasOCD = null;
+        this.scrollTop();
+    }
+
+    private scrollTop() {
+        window.scrollTo(0, 0);
     }
 
     private evaluateTest() {
