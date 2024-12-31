@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CardComponent } from '../../components';
+import { CardComponent, QuoteComponent } from '../../components';
 
 @Component({
     selector: 'app-start',
     standalone: true,
     templateUrl: './start.component.html',
-    imports: [CardComponent]
+    imports: [CardComponent, QuoteComponent]
 })
 export class StartComponent { }
