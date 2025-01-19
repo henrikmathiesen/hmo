@@ -4,7 +4,6 @@ import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-nav',
-    standalone: true,
     imports: [RouterLink, NgClass, RouterLinkActive],
     templateUrl: './nav.component.html',
     styleUrls: ['./nav.component.css']

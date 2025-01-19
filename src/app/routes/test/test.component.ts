@@ -7,7 +7,6 @@ import { FeatherIcon } from '../../directives';
 
 @Component({
     selector: 'app-test',
-    standalone: true,
     imports: [ReactiveFormsModule, NgFor, NgClass, NgIf, QuoteComponent, CardComponent, FeatherIcon],
     templateUrl: './test.component.html',
     styleUrls: ['./test.component.css']

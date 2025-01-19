@@ -1,8 +1,28 @@
 <div class="row">
-    <div class="col-md-7">
-        <h2>Sluta med Compulsions!</h2>
+    <div class="col-md-5">
         <div>
-            {{ d | date }}
+            <ngb-datepicker #dpTrackerCalendar 
+                [ngModel]="trackerCalendarModel" 
+                [showWeekNumbers]="true" 
+                (dateSelect)="onTrackerCalendarSelect($event)" />
+        </div>
+    </div>
+    <div class="col-md-7">
+        <h2 class="h5">{{ trackerCalendarModel | ngbDateToDate | date }}</h2>
+        <p>
+            Påstående: Denna dag i mitt liv gjorde jag inte tvångsbeteenden
+            (handlingar, undvikanden, återförsäkringssökande, bekännelser, tvångstankar (lugnande tankar / mottankar))
+        </p>
+        <div>
+            <select #trackerSelect 
+                class="form-control app-width-50-percent" 
+                [ngModel]="ratingModel"
+                (change)="onTrackerRatingSelect(trackerSelect.value)">
+                <option [value]="RatingEnum.placeholder">{{ RatingEnum.placeholder }}</option>
+                <option [value]="RatingEnum.stammer_helt">{{ RatingEnum.stammer_helt }}</option>
+                <option [value]="RatingEnum.stammer_delvis">{{ RatingEnum.stammer_delvis }}</option>
+                <option [value]="RatingEnum.stammer_inte">{{ RatingEnum.stammer_inte }}</option>
+            </select>
         </div>
     </div>
 </div>

@@ -4,7 +4,6 @@ import { CardComponent, QuoteComponent } from '../../components';
 
 @Component({
     selector: 'app-resurser',
-    standalone: true,
     imports: [CardComponent, QuoteComponent, RouterLink],
     templateUrl: './resurser.component.html'
 })

@@ -3,7 +3,6 @@ import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-quote',
-    standalone: true,
     imports: [NgClass],
     templateUrl: './quote.component.html',
     styleUrls: ['./quote.component.css']
