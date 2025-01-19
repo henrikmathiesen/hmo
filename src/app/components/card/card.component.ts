@@ -12,5 +12,5 @@ import { FeatherIcon } from '../../directives';
 })
 export class CardComponent {
     @Input() header = '';
-    @Input() iconType: 'user' | 'book' | '' = '';
+    @Input() iconType: 'user' | 'book' | 'edit' | '' = '';
 }

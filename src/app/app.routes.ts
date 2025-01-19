@@ -1,6 +1,13 @@
 import { Routes } from '@angular/router';
 
-import { ResurserComponent, OmComponent, StartComponent, TerapinComponent, TestComponent } from './routes';
+import {
+    ResurserComponent,
+    OmComponent,
+    StartComponent,
+    TerapinComponent,
+    TestComponent,
+    TrackerComponent
+} from './routes';
 
 export const routes: Routes = [
     {
@@ -24,8 +31,12 @@ export const routes: Routes = [
         component: ResurserComponent
     },
     {
-        path: '', 
-        redirectTo: 'start', 
+        path: 'resurser/tracker',
+        component: TrackerComponent
+    },
+    {
+        path: '',
+        redirectTo: 'start',
         pathMatch: 'full'
     },
     {
