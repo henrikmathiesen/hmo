@@ -3,12 +3,13 @@ import { DatePipe, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbCalendar, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
+import { RatingBadgeComponent } from '../../../components';
 import { NgbDateToDatePipe } from '../../../pipes';
 import { RatingEnum, TrackerInterface } from '../../../models';
 
 @Component({
     selector: 'app-tracker',
-    imports: [NgIf, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe],
+    imports: [NgIf, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe, RatingBadgeComponent],
     templateUrl: './tracker.component.html'
 })
 export class TrackerComponent implements OnInit {

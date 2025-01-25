@@ -5,3 +5,7 @@ html, body {
 .app-width-50-percent {
     width: 50%;
 }
+
+.badge {
+    font-size: 100% !important;
+}

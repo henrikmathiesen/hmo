@@ -1,0 +1,8 @@
+<span class="badge" 
+    [ngClass]="{ 
+        'badge-primary': ratingForSelectedDay === RatingEnum.stammer_inte, 
+        'badge-danger': ratingForSelectedDay === RatingEnum.stammer_delvis, 
+        'badge-success': ratingForSelectedDay === RatingEnum.stammer_helt
+    }">
+    {{ ratingForSelectedDay }}
+</span>

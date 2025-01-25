@@ -26,7 +26,7 @@
         </div>
         <div class="mt-4" *ngIf="ratingForSelectedDay !== RatingEnum.placeholder">
             <h2 class="h5">Ditt svar</h2>
-            {{ ratingForSelectedDay }}
+            <app-rating-badge [ratingForSelectedDay]="ratingForSelectedDay"></app-rating-badge>
         </div>
     </div>
 </div>
