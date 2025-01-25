@@ -24,5 +24,9 @@
                 <option [value]="RatingEnum.stammer_inte">{{ RatingEnum.stammer_inte }}</option>
             </select>
         </div>
+        <div class="mt-4" *ngIf="ratingForSelectedDay !== RatingEnum.placeholder">
+            <h2 class="h5">Ditt svar</h2>
+            {{ ratingForSelectedDay }}
+        </div>
     </div>
 </div>
