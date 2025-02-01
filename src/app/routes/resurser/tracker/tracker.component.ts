@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe, NgIf } from '@angular/common';
+import { DatePipe, NgClass, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { 
-    NgbCalendar, 
-    NgbDatepickerModule, 
-    NgbDateStruct, 
+import {
+    NgbCalendar,
+    NgbDatepickerModule,
+    NgbDateStruct,
     NgbDatepickerNavigateEvent,
-    NgbDatepicker } 
-from '@ng-bootstrap/ng-bootstrap';
+    NgbDatepicker,
+    NgbDate
+}
+    from '@ng-bootstrap/ng-bootstrap';
 
 import { RatingBadgeComponent } from '../../../components';
 import { NgbDateToDatePipe } from '../../../pipes';
@@ -15,7 +17,7 @@ import { RatingEnum, TrackerInterface } from '../../../models';
 
 @Component({
     selector: 'app-tracker',
-    imports: [NgIf, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe, RatingBadgeComponent],
+    imports: [NgIf, NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe, RatingBadgeComponent],
     templateUrl: './tracker.component.html'
 })
 export class TrackerComponent implements OnInit {
@@ -33,17 +35,19 @@ export class TrackerComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.trackerCalendarModel = this.calendar.getToday();
-        this.trackerViewCalendarModel = this.calendar.getToday();
+        this.trackerCalendarsSetModelToday();
 
         let trackersInLocalStorage = localStorage.getItem(this.localStorageKey);
-        
+
         if (trackersInLocalStorage) {
             this.trackerModel = JSON.parse(trackersInLocalStorage);
         }
 
         this.updateRatingForSelectedDay();
     }
+
+    //
+    // Tracker Calendar
 
     onTrackerCalendarSelect(event: NgbDateStruct) {
         this.trackerCalendarModel = event;
@@ -66,9 +70,58 @@ export class TrackerComponent implements OnInit {
         this.updateRatingForSelectedDay();
     }
 
+    //
+    // Tracker View Calendar
+
+    dpTrackerViewCustomDayGetCssClass(date: NgbDateStruct) {
+        const id = this.getId(date);
+        const item = this.trackerModel.filter(v => v.id === id)[0];
+
+        if (!item) {
+            return 'app-dp-custom-day--not-rated';
+        }
+
+        switch (item.rating) {
+            case RatingEnum.stammer_helt: {
+                return 'bg-success text-white';
+            }
+            case RatingEnum.stammer_delvis: {
+                return 'bg-danger text-white';
+            }
+            case RatingEnum.stammer_inte: {
+                return 'bg-primary text-white';
+            }
+            default: {
+                return 'app-dp-custom-day--not-rated';
+            }
+        }
+    }
+
+    //
+    // Other
+
+    trackerCalendarsGoToToday(dpTracker: NgbDatepicker, dpTrackerView: NgbDatepicker) {
+        this.trackerCalendarsSetModelToday();
+
+        const today = this.calendar.getToday();
+
+        dpTracker.navigateTo(today);
+        dpTrackerView.navigateTo(today);
+
+        this.ratingModel = RatingEnum.placeholder;
+        this.updateRatingForSelectedDay();
+    }
+
+    private trackerCalendarsSetModelToday() {
+        const today = this.calendar.getToday();
+
+        this.trackerCalendarModel = today;
+        this.trackerViewCalendarModel = today;
+    }
+
     private setInTracker() {
         const trackerItem: TrackerInterface = {
-            id: this.getId(),
+            id: this.getId(this.trackerCalendarModel),
             rating: this.ratingModel
         };
 
@@ -84,12 +137,12 @@ export class TrackerComponent implements OnInit {
         localStorage.setItem(this.localStorageKey, JSON.stringify(this.trackerModel));
     }
 
-    private getId() {
-        return `${this.trackerCalendarModel.year}_${this.trackerCalendarModel.month}_${this.trackerCalendarModel.day}`;
+    private getId(date: NgbDateStruct) {
+        return `${date.year}_${date.month}_${date.day}`;
     }
 
     private updateRatingForSelectedDay() {
-        const idForSelectedDay = this.getId();
+        const idForSelectedDay = this.getId(this.trackerCalendarModel);
         const item = this.trackerModel.filter(v => v.id === idForSelectedDay)[0];
 
         if (item) {

@@ -1,31 +1,32 @@
 <div class="row">
     <div class="col-md-5">
-        <div>
-            <ngb-datepicker
-                [ngModel]="trackerCalendarModel" 
-                [showWeekNumbers]="true" 
-                (dateSelect)="onTrackerCalendarSelect($event)" 
+        <h2 class="h5 ml-5">Navigera</h2>
+        <div class="app-dp-tracker mb-3">
+            <ngb-datepicker #dpTracker [ngModel]="trackerCalendarModel" [showWeekNumbers]="true"
+                (dateSelect)="onTrackerCalendarSelect($event)"
                 (navigate)="onTrackerCalendarNavigate($event, dpTrackerView)" />
         </div>
-        <div class="mt-2 app-dp-tracker-view">
-            <ngb-datepicker #dpTrackerView 
-                [ngModel]="trackerViewCalendarModel" 
-                [navigation]="'none'"
-                [showWeekNumbers]="true" 
-                 />
+        <h2 class="h5 mb-0 ml-5">Titta</h2>
+        <div class="app-dp-tracker-view mb-4">
+            <ngb-datepicker #dpTrackerView [ngModel]="trackerViewCalendarModel" [navigation]="'none'"
+                [showWeekNumbers]="true" [dayTemplate]="dpTrackerViewCustomDay" />
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary btn-sm ml-5" 
+                (click)="trackerCalendarsGoToToday(dpTracker, dpTrackerView)">
+                Gå till i dag
+            </button>
         </div>
     </div>
     <div class="col-md-7 mt-4 mt-md-0">
-        <h2 class="h5">{{ trackerCalendarModel | ngbDateToDate | date }}</h2>
+        <h2 class="h5">Besvara: {{ trackerCalendarModel | ngbDateToDate | date }}</h2>
         <p>
             Påstående: Denna dag i mitt liv gjorde jag inte tvångsbeteenden
             (handlingar, undvikanden, återförsäkringssökande, bekännelser, tvångstankar (lugnande tankar / mottankar)).
             I stället levde jag mitt liv som om mina obsessions inte existerade.
         </p>
         <div>
-            <select #trackerSelect 
-                class="form-control app-width-50-percent" 
-                [ngModel]="ratingModel"
+            <select #trackerSelect class="form-control app-width-50-percent" [ngModel]="ratingModel"
                 (change)="onTrackerRatingSelect(trackerSelect.value)">
                 <option [value]="RatingEnum.placeholder">{{ RatingEnum.placeholder }}</option>
                 <option [value]="RatingEnum.stammer_helt">{{ RatingEnum.stammer_helt }}</option>
@@ -39,3 +40,9 @@
         </div>
     </div>
 </div>
+
+<ng-template #dpTrackerViewCustomDay let-date let-currentMonth="currentMonth">
+    <div class="app-dp-custom-day" [class.hidden]="date.month !== currentMonth" [ngClass]="dpTrackerViewCustomDayGetCssClass(date)">
+        {{ date.day }}
+    </div>
+</ng-template>
