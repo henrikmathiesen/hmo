@@ -9,3 +9,18 @@ html, body {
 .badge {
     font-size: 100% !important;
 }
+
+.app-dp-tracker-view .ngb-dp-day {
+    cursor: none;
+}
+
+.app-dp-tracker-view .ngb-dp-day > div {
+    color: #777 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.app-dp-tracker-view .ngb-dp-day:focus-visible,
+.app-dp-tracker-view .ngb-dp-day:focus {
+    outline: none;
+}

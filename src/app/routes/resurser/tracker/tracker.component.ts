@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgbCalendar, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { 
+    NgbCalendar, 
+    NgbDatepickerModule, 
+    NgbDateStruct, 
+    NgbDatepickerNavigateEvent,
+    NgbDatepicker } 
+from '@ng-bootstrap/ng-bootstrap';
 
 import { RatingBadgeComponent } from '../../../components';
 import { NgbDateToDatePipe } from '../../../pipes';
@@ -14,6 +20,7 @@ import { RatingEnum, TrackerInterface } from '../../../models';
 })
 export class TrackerComponent implements OnInit {
     trackerCalendarModel: NgbDateStruct = { day: 0, month: 0, year: 0 };
+    trackerViewCalendarModel: NgbDateStruct = { day: 0, month: 0, year: 0 };
     ratingModel: RatingEnum = RatingEnum.placeholder;
     trackerModel: TrackerInterface[] = [];
     RatingEnum = RatingEnum;
@@ -27,6 +34,7 @@ export class TrackerComponent implements OnInit {
 
     ngOnInit(): void {
         this.trackerCalendarModel = this.calendar.getToday();
+        this.trackerViewCalendarModel = this.calendar.getToday();
 
         let trackersInLocalStorage = localStorage.getItem(this.localStorageKey);
         
@@ -41,6 +49,10 @@ export class TrackerComponent implements OnInit {
         this.trackerCalendarModel = event;
         this.ratingModel = RatingEnum.placeholder;
         this.updateRatingForSelectedDay();
+    }
+
+    onTrackerCalendarNavigate(event: NgbDatepickerNavigateEvent, dpTrackerView: NgbDatepicker) {
+        dpTrackerView.navigateTo(event.next);
     }
 
     onTrackerRatingSelect(event: string) {
