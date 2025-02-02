@@ -2,14 +2,17 @@ html, body {
     height: 100%;
 }
 
-.app-width-50-percent {
-    width: 50%;
-}
-
 .badge {
     font-size: 100% !important;
 }
 
+.app-width-50-percent {
+    width: 50%;
+}
+
+.app-max-width-265 {
+    max-width: 265px;
+}
 
 .app-dp-tracker .ngb-dp-day .app-dp-custom-day {
     text-align: center;

@@ -4,10 +4,14 @@
             <ngb-datepicker #dpTracker [ngModel]="trackerCalendarModel" [showWeekNumbers]="true"
                 [dayTemplate]="dpTrackerCustomDay" (dateSelect)="onTrackerCalendarSelect($event)" />
         </div>
-        <div>
+        <div class="mb-4">
             <button type="button" class="btn btn-primary btn-sm ml-5" (click)="trackerCalendarGoToToday(dpTracker)">
                 Gå till i dag
             </button>
+        </div>
+        <div class="app-max-width-265 d-none d-md-block">
+            <hr class="ml-0">
+            <app-tracker-teknisk-info></app-tracker-teknisk-info>
         </div>
     </div>
     <div class="col-md-7 mt-4 mt-md-0">
@@ -29,6 +33,12 @@
         <div class="mt-4" *ngIf="ratingForSelectedDay !== RatingEnum.placeholder">
             <h2 class="h5">Ditt svar</h2>
             <app-rating-badge [ratingForSelectedDay]="ratingForSelectedDay"></app-rating-badge>
+        </div>
+        <div class="mt-5">
+            <div class="d-md-none">
+                <hr class="ml-0">
+                <app-tracker-teknisk-info></app-tracker-teknisk-info>
+            </div>
         </div>
     </div>
 </div>

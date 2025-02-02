@@ -5,19 +5,17 @@ import {
     NgbCalendar,
     NgbDatepickerModule,
     NgbDateStruct,
-    NgbDatepickerNavigateEvent,
     NgbDatepicker,
-    NgbDate
 }
     from '@ng-bootstrap/ng-bootstrap';
 
-import { RatingBadgeComponent } from '../../../components';
+import { RatingBadgeComponent, TrackerTekniskInfoComponent } from '../../../components';
 import { NgbDateToDatePipe } from '../../../pipes';
 import { RatingEnum, TrackerInterface } from '../../../models';
 
 @Component({
     selector: 'app-tracker',
-    imports: [NgIf, NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe, RatingBadgeComponent],
+    imports: [NgIf, NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe, RatingBadgeComponent, TrackerTekniskInfoComponent],
     templateUrl: './tracker.component.html'
 })
 export class TrackerComponent implements OnInit {
