@@ -9,13 +9,15 @@ import {
 }
     from '@ng-bootstrap/ng-bootstrap';
 
-import { RatingBadgeComponent, TrackerTekniskInfoComponent } from '../../../components';
+import { RatingBadgeComponent, TrackerTekniskInfoComponent, TrackerMilestonesComponent } from '../../../components';
 import { NgbDateToDatePipe } from '../../../pipes';
 import { RatingEnum, TrackerInterface } from '../../../models';
 
 @Component({
     selector: 'app-tracker',
-    imports: [NgIf, NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe, RatingBadgeComponent, TrackerTekniskInfoComponent],
+    imports: [
+        NgIf, NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe,
+        RatingBadgeComponent, TrackerTekniskInfoComponent, TrackerMilestonesComponent],
     templateUrl: './tracker.component.html'
 })
 export class TrackerComponent implements OnInit {
@@ -26,6 +28,8 @@ export class TrackerComponent implements OnInit {
 
     ratingForSelectedDay: RatingEnum = RatingEnum.placeholder;
     private readonly localStorageKey = 'hmo';
+
+    shouldRenderMilestones = true;
 
     constructor(
         private calendar: NgbCalendar
@@ -58,6 +62,7 @@ export class TrackerComponent implements OnInit {
 
         this.setInTracker();
         this.updateRatingForSelectedDay();
+        this.reRenderMilestones();
     }
 
     dpTrackerCustomDayGetCssClass(date: NgbDateStruct) {
@@ -131,5 +136,10 @@ export class TrackerComponent implements OnInit {
         } else {
             this.ratingForSelectedDay = RatingEnum.placeholder;
         }
+    }
+
+    private reRenderMilestones() {
+        this.shouldRenderMilestones = false;
+        setTimeout(() => { this.shouldRenderMilestones = true; })
     }
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NgClass, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 import { FeatherIcon } from '../../directives';
 

@@ -11,4 +11,5 @@ export class QuoteComponent {
     @Input() p = '';
     @Input() f = '';
     @Input() smallP = false;
+    @Input() textRight = true;
 }

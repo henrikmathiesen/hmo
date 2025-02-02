@@ -1,0 +1,13 @@
+<div>
+    <h2 class="h5">Achievements</h2>
+    <p *ngIf="!atLeastOneMilestoneAchived">
+        <app-quote [p]="'Jag kan leda dig till vattnet men du måste dricka'" [f]="'Olle Wadström'" [smallP]="true"
+            [textRight]="false"></app-quote>
+    </p>
+    <ul class="list-unstyled" *ngIf="atLeastOneMilestoneAchived">
+        <li *ngFor="let m of milestones" class="d-flex">
+            <span [attr.data-feather]="'award'" appFeatherIcon class="text-success flex-shrink-0"></span>
+            <span>{{ m.label }}: {{ m.criteria }}</span>
+        </li>
+    </ul>
+</div>
