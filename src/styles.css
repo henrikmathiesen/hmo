@@ -10,31 +10,18 @@ html, body {
     font-size: 100% !important;
 }
 
-/* Datepicker Tracker */
 
-.app-dp-tracker .ngb-dp-day .bg-primary {
-    opacity: 0.6;
-    outline: 1px solid black;
-}
-
-/* Datepicker Tracker View */
-
-.app-dp-tracker-view .ngb-dp-day {
-    cursor: default !important;
-}
-
-.app-dp-tracker-view .ngb-dp-day:focus-visible,
-.app-dp-tracker-view .ngb-dp-day:focus {
-    outline: none;
-}
-
-.app-dp-tracker-view .ngb-dp-day .app-dp-custom-day {
+.app-dp-tracker .ngb-dp-day .app-dp-custom-day {
     text-align: center;
     width: 2rem;
     height: 2rem;
     line-height: 2rem;
 }
 
-.app-dp-tracker-view .ngb-dp-day .app-dp-custom-day.hidden {
-    opacity: 0.5;
+.app-dp-tracker .ngb-dp-day .app-dp-custom-day.app-dp-tracker-selected {
+    outline: 1px solid black;
+}
+
+.app-dp-tracker .ngb-dp-day .app-dp-custom-day.hidden {
+    opacity: 0.5; 
 }

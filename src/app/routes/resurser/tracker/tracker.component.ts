@@ -22,7 +22,6 @@ import { RatingEnum, TrackerInterface } from '../../../models';
 })
 export class TrackerComponent implements OnInit {
     trackerCalendarModel: NgbDateStruct = { day: 0, month: 0, year: 0 };
-    trackerViewCalendarModel: NgbDateStruct = { day: 0, month: 0, year: 0 };
     ratingModel: RatingEnum = RatingEnum.placeholder;
     trackerModel: TrackerInterface[] = [];
     RatingEnum = RatingEnum;
@@ -35,7 +34,7 @@ export class TrackerComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.trackerCalendarsSetModelToday();
+        this.trackerCalendarSetModelToday();
 
         let trackersInLocalStorage = localStorage.getItem(this.localStorageKey);
 
@@ -46,17 +45,10 @@ export class TrackerComponent implements OnInit {
         this.updateRatingForSelectedDay();
     }
 
-    //
-    // Tracker Calendar
-
     onTrackerCalendarSelect(event: NgbDateStruct) {
         this.trackerCalendarModel = event;
         this.ratingModel = RatingEnum.placeholder;
         this.updateRatingForSelectedDay();
-    }
-
-    onTrackerCalendarNavigate(event: NgbDatepickerNavigateEvent, dpTrackerView: NgbDatepicker) {
-        dpTrackerView.navigateTo(event.next);
     }
 
     onTrackerRatingSelect(event: string) {
@@ -70,10 +62,7 @@ export class TrackerComponent implements OnInit {
         this.updateRatingForSelectedDay();
     }
 
-    //
-    // Tracker View Calendar
-
-    dpTrackerViewCustomDayGetCssClass(date: NgbDateStruct) {
+    dpTrackerCustomDayGetCssClass(date: NgbDateStruct) {
         const id = this.getId(date);
         const item = this.trackerModel.filter(v => v.id === id)[0];
 
@@ -97,26 +86,20 @@ export class TrackerComponent implements OnInit {
         }
     }
 
-    //
-    // Other
-
-    trackerCalendarsGoToToday(dpTracker: NgbDatepicker, dpTrackerView: NgbDatepicker) {
-        this.trackerCalendarsSetModelToday();
+    trackerCalendarGoToToday(dpTracker: NgbDatepicker) {
+        this.trackerCalendarSetModelToday();
 
         const today = this.calendar.getToday();
 
         dpTracker.navigateTo(today);
-        dpTrackerView.navigateTo(today);
 
         this.ratingModel = RatingEnum.placeholder;
         this.updateRatingForSelectedDay();
     }
 
-    private trackerCalendarsSetModelToday() {
+    private trackerCalendarSetModelToday() {
         const today = this.calendar.getToday();
-
         this.trackerCalendarModel = today;
-        this.trackerViewCalendarModel = today;
     }
 
     private setInTracker() {

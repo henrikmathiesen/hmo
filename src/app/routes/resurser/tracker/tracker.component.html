@@ -1,19 +1,11 @@
 <div class="row">
     <div class="col-md-5">
-        <h2 class="h5 ml-5">Navigera</h2>
-        <div class="app-dp-tracker mb-3">
+        <div class="app-dp-tracker mb-4">
             <ngb-datepicker #dpTracker [ngModel]="trackerCalendarModel" [showWeekNumbers]="true"
-                (dateSelect)="onTrackerCalendarSelect($event)"
-                (navigate)="onTrackerCalendarNavigate($event, dpTrackerView)" />
-        </div>
-        <h2 class="h5 mb-0 ml-5">Titta</h2>
-        <div class="app-dp-tracker-view mb-4">
-            <ngb-datepicker #dpTrackerView [ngModel]="trackerViewCalendarModel" [navigation]="'none'"
-                [showWeekNumbers]="true" [dayTemplate]="dpTrackerViewCustomDay" />
+                [dayTemplate]="dpTrackerCustomDay" (dateSelect)="onTrackerCalendarSelect($event)" />
         </div>
         <div>
-            <button type="button" class="btn btn-primary btn-sm ml-5" 
-                (click)="trackerCalendarsGoToToday(dpTracker, dpTrackerView)">
+            <button type="button" class="btn btn-primary btn-sm ml-5" (click)="trackerCalendarGoToToday(dpTracker)">
                 Gå till i dag
             </button>
         </div>
@@ -41,8 +33,9 @@
     </div>
 </div>
 
-<ng-template #dpTrackerViewCustomDay let-date let-currentMonth="currentMonth">
-    <div class="app-dp-custom-day" [class.hidden]="date.month !== currentMonth" [ngClass]="dpTrackerViewCustomDayGetCssClass(date)">
+<ng-template #dpTrackerCustomDay let-date let-currentMonth="currentMonth" let-selected="selected">
+    <div class="app-dp-custom-day" [class.hidden]="date.month !== currentMonth"
+        [class.app-dp-tracker-selected]="selected" [ngClass]="dpTrackerCustomDayGetCssClass(date)">
         {{ date.day }}
     </div>
 </ng-template>
