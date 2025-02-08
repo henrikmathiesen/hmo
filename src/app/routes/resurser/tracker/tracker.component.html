@@ -23,7 +23,8 @@
         </p>
         <div>
             <select #trackerSelect class="form-control app-width-50-percent" [ngModel]="ratingModel"
-                (change)="onTrackerRatingSelect(trackerSelect.value)">
+                (change)="onTrackerRatingSelect(trackerSelect.value)" 
+                [attr.disabled]="!datePickerDateIsTodayOrEarlier ? true : null">
                 <option [value]="RatingEnum.placeholder">{{ RatingEnum.placeholder }}</option>
                 <option [value]="RatingEnum.stammer_helt">{{ RatingEnum.stammer_helt }}</option>
                 <option [value]="RatingEnum.stammer_nastan_helt">{{ RatingEnum.stammer_nastan_helt }}</option>

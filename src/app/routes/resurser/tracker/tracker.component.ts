@@ -18,6 +18,7 @@ import { RatingEnum, TrackerInterface } from '../../../models';
     imports: [
         NgIf, NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe,
         RatingBadgeComponent, TrackerTekniskInfoComponent, TrackerMilestonesComponent],
+    providers: [NgbDateToDatePipe],
     templateUrl: './tracker.component.html',
     styleUrls: ['./tracker.component.css']
 })
@@ -26,6 +27,7 @@ export class TrackerComponent implements OnInit {
     ratingModel: RatingEnum = RatingEnum.placeholder;
     trackerModel: TrackerInterface[] = [];
     RatingEnum = RatingEnum;
+    datePickerDateIsTodayOrEarlier = false;
 
     ratingForSelectedDay: RatingEnum = RatingEnum.placeholder;
     private readonly localStorageKey = 'hmo';
@@ -33,7 +35,8 @@ export class TrackerComponent implements OnInit {
     shouldRenderMilestones = true;
 
     constructor(
-        private calendar: NgbCalendar
+        private calendar: NgbCalendar,
+        private ngbDateToDatePipe: NgbDateToDatePipe
     ) { }
 
     ngOnInit(): void {
@@ -46,12 +49,14 @@ export class TrackerComponent implements OnInit {
         }
 
         this.updateRatingForSelectedDay();
+        this.checkDatePickerDateIsTodayOrEarlier();
     }
 
     onTrackerCalendarSelect(event: NgbDateStruct) {
         this.trackerCalendarModel = event;
         this.ratingModel = RatingEnum.placeholder;
         this.updateRatingForSelectedDay();
+        this.checkDatePickerDateIsTodayOrEarlier();
     }
 
     onTrackerRatingSelect(event: string) {
@@ -102,6 +107,7 @@ export class TrackerComponent implements OnInit {
 
         this.ratingModel = RatingEnum.placeholder;
         this.updateRatingForSelectedDay();
+        this.checkDatePickerDateIsTodayOrEarlier();
     }
 
     private trackerCalendarSetModelToday() {
@@ -113,8 +119,8 @@ export class TrackerComponent implements OnInit {
         const trackerItem: TrackerInterface = {
             id: this.getId(this.trackerCalendarModel),
             rating: this.ratingModel,
-            date: { 
-                day: this.trackerCalendarModel.day, 
+            date: {
+                day: this.trackerCalendarModel.day,
                 month: this.trackerCalendarModel.month,
                 year: this.trackerCalendarModel.year
             }
@@ -145,6 +151,15 @@ export class TrackerComponent implements OnInit {
         } else {
             this.ratingForSelectedDay = RatingEnum.placeholder;
         }
+    }
+
+    private checkDatePickerDateIsTodayOrEarlier() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const datepickerDate = this.ngbDateToDatePipe.transform(this.trackerCalendarModel);
+
+        this.datePickerDateIsTodayOrEarlier = datepickerDate <= today;
     }
 
     private reRenderMilestones() {
