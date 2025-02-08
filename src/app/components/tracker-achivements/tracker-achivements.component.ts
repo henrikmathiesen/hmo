@@ -7,7 +7,7 @@ import { MilestoneInterface } from '../../models';
 @Component({
     selector: 'app-tracker-achivements',
     imports: [NgFor, FeatherIcon],
-    templateUrl: 'tracker-achivements.component.html'
+    templateUrl: './tracker-achivements.component.html'
 })
 export class TrackerAchivementsComponent {
 

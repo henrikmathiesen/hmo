@@ -1,5 +1,10 @@
 <div>
-    <h2 class="h5 mb-4">Achievements ({{ achivedMilestones.length }} av {{ milestones.length }})</h2>
+    <h2 class="h5 mb-4 app-milestone-header"
+        [ngClass]=" { 'app-new-milestones': newMilesStonesSpark, 'mark': newMilesStonesSparkMark } ">
+        Achievements
+        (<span [ngClass]=" { 'text-success': newMilesStonesSpark } ">{{ achivedMilestones.length }}</span> av {{
+        milestones.length }})
+    </h2>
     <p *ngIf="!(!!achivedMilestones.length)">
         <app-quote [p]="'Jag kan leda dig till vattnet men du måste dricka'" [f]="'Olle Wadström'" [smallP]="true"
             [textRight]="false"></app-quote>

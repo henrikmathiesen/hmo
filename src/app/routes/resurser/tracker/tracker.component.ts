@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe, NgClass, NgIf } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
     NgbCalendar,
@@ -16,7 +16,7 @@ import { RatingEnum, TrackerInterface } from '../../../models';
 @Component({
     selector: 'app-tracker',
     imports: [
-        NgIf, NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe,
+        NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe,
         RatingBadgeComponent, TrackerTekniskInfoComponent, TrackerMilestonesComponent],
     providers: [NgbDateToDatePipe],
     templateUrl: './tracker.component.html',
@@ -30,9 +30,7 @@ export class TrackerComponent implements OnInit {
     datePickerDateIsTodayOrEarlier = false;
 
     ratingForSelectedDay: RatingEnum = RatingEnum.placeholder;
-    private readonly localStorageKey = 'hmo';
-
-    shouldRenderMilestones = true;
+    private readonly localStorageKey = 'hmo_tracker';
 
     constructor(
         private calendar: NgbCalendar,
@@ -68,7 +66,6 @@ export class TrackerComponent implements OnInit {
 
         this.setInTracker();
         this.updateRatingForSelectedDay();
-        this.reRenderMilestones();
     }
 
     dpTrackerCustomDayGetCssClass(date: NgbDateStruct) {
@@ -160,10 +157,5 @@ export class TrackerComponent implements OnInit {
         const datepickerDate = this.ngbDateToDatePipe.transform(this.trackerCalendarModel);
 
         this.datePickerDateIsTodayOrEarlier = datepickerDate <= today;
-    }
-
-    private reRenderMilestones() {
-        this.shouldRenderMilestones = false;
-        setTimeout(() => { this.shouldRenderMilestones = true; })
     }
 }

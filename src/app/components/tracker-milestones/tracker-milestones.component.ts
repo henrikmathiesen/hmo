@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgIf, NgClass } from '@angular/common';
 
 import { TrackerInterface, RatingEnum, MilestoneInterface } from '../../models';
 import { QuoteComponent } from '../quote/quote.component';
@@ -8,8 +8,9 @@ import { NgbDateToDatePipe } from '../../pipes';
 
 @Component({
     selector: 'app-tracker-milestones',
-    imports: [NgIf, QuoteComponent, TrackerAchivementsComponent],
-    templateUrl: 'tracker-milestones.component.html'
+    imports: [NgIf, NgClass, QuoteComponent, TrackerAchivementsComponent],
+    templateUrl: './tracker-milestones.component.html',
+    styleUrls: ['./tracker-milestones.component.css']
 })
 export class TrackerMilestonesComponent implements OnInit {
 
@@ -116,7 +117,15 @@ export class TrackerMilestonesComponent implements OnInit {
     achivedMilestonesMedium: MilestoneInterface[] = [];
     achivedMilestonesHard: MilestoneInterface[] = [];
 
+    newMilesStonesSpark = false;
+    newMilesStonesSparkMark = false;
+
+    private readonly localStorageKey = 'hmo_milestones';
+
+
     ngOnInit() {
+        const localStorageItem = localStorage.getItem(this.localStorageKey) || 0;
+
         this.checkMilestoneEasy(3, 0);
         this.checkMilestoneEasy(30, 1);
         this.checkMilestoneEasy(60, 2);
@@ -133,10 +142,21 @@ export class TrackerMilestonesComponent implements OnInit {
         this.checkMilestoneHard(10, 10);
         this.checkMilestoneHard(20, 11);
 
-        this.setAchiveMilestones();
+        this.setAchivedMilestones();
+
+        this.calculateUpdatedMilestones(+localStorageItem, this.achivedMilestones.length);
+
+        localStorage.setItem(this.localStorageKey, this.achivedMilestones.length.toString());
     }
 
-    private setAchiveMilestones() {
+    private calculateUpdatedMilestones(old: number, current: number) {
+        this.newMilesStonesSpark = current > old;
+        this.newMilesStonesSparkMark = this.newMilesStonesSpark;
+
+        setTimeout(() => { this.newMilesStonesSparkMark = false; }, 5000);
+    }
+
+    private setAchivedMilestones() {
         this.achivedMilestones = this.milestones.filter(v => v.achived === true);
         this.achivedMilestones = [...this.achivedMilestones.sort((a, b) => { return a.level - b.level })];
 
@@ -211,43 +231,3 @@ export class TrackerMilestonesComponent implements OnInit {
         this.milestones[idx].achived = result;
     }
 }
-
-/* 
-
-dates.sort((a, b) => { return +a - +b });
-
-// const firstDate = dates[0];
-
-        // let count = 0;
-        // dates.forEach((v, i, arr) => {
-        //     // if (+v - +arr[i + 1] === i * 86400000) {
-        //     //     count++;
-        //     // }
-
-        //     arr.forEach((x, index) => {
-        //         if (+v - +x === index * 86400000) {
-        //             console.log(v, x);
-        //             count++;
-        //         }
-        //     });
-        // });
-
-        // console.log(dates);
-        // console.log('count', count);
-
-array.sort(function(a,b){
-  // Turn your strings into dates, and then subtract them
-  // to get a value that is either negative, positive, or zero.
-  return new Date(b.date) - new Date(a.date);
-});
-
-
-function currentStreak(arr) {
-  let count = 0
-  arr.reverse().forEach((el, i) => {
-    if ((new Date().setUTCHours(0,0,0,0) - new Date(el.date).setUTCHours(0,0,0,0)) === i * 86400000) count++
-  })
-  return count
-} 
-
-*/
