@@ -1,13 +1,26 @@
 <div>
-    <h2 class="h5 mb-3">Achievements</h2>
+    <h2 class="h5 mb-4">Achievements ({{ achivedMilestones.length }} av {{ milestones.length }})</h2>
     <p *ngIf="!(!!achivedMilestones.length)">
         <app-quote [p]="'Jag kan leda dig till vattnet men du måste dricka'" [f]="'Olle Wadström'" [smallP]="true"
             [textRight]="false"></app-quote>
     </p>
-    <ul class="list-unstyled mb-0" *ngIf="!!achivedMilestones.length">
-        <li *ngFor="let m of achivedMilestones; trackBy: trackByFn" class="d-flex mt-3">
-            <span [attr.data-feather]="'award'" appFeatherIcon class="text-success flex-shrink-0"></span>
-            <span>{{ m.label }}! {{ m.criteria }}</span>
-        </li>
-    </ul>
+
+    <ng-container *ngIf="!!achivedMilestones.length">
+        <ng-container *ngIf="!!achivedMilestonesJokers.length">
+            <h2 class="h6">Jokers</h2>
+            <app-tracker-achivements [achivedMilestones]="achivedMilestonesJokers"></app-tracker-achivements>
+        </ng-container>
+        <ng-container *ngIf="!!achivedMilestonesEasy.length">
+            <h2 class="h6">Easy</h2>
+            <app-tracker-achivements [achivedMilestones]="achivedMilestonesEasy"></app-tracker-achivements>
+        </ng-container>
+        <ng-container *ngIf="!!achivedMilestonesMedium.length">
+            <h2 class="h6">Medium</h2>
+            <app-tracker-achivements [achivedMilestones]="achivedMilestonesMedium"></app-tracker-achivements>
+        </ng-container>
+        <ng-container *ngIf="!!achivedMilestonesHard.length">
+            <h2 class="h6">Hard</h2>
+            <app-tracker-achivements [achivedMilestones]="achivedMilestonesHard"></app-tracker-achivements>
+        </ng-container>
+    </ng-container>
 </div>

@@ -1,0 +1,6 @@
+<ul class="list-unstyled mb-4">
+    <li *ngFor="let m of achivedMilestones; trackBy: trackByFn" class="d-flex mt-3 shadow py-2 pl-1 bg-white rounded">
+        <span [attr.data-feather]="'award'" appFeatherIcon class="text-success flex-shrink-0"></span>
+        <span>{{ m.label }}! {{ m.criteria }}</span>
+    </li>
+</ul>

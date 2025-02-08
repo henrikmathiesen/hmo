@@ -3,4 +3,5 @@ export interface MilestoneInterface {
     label: string; 
     achived: boolean; 
     criteria: string;
+    level: number;
 }
