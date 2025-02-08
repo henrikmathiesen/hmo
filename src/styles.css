@@ -6,8 +6,18 @@ html, body {
     font-size: 100% !important;
 }
 
+.badge-warning, .bg-warning {
+    background-color: #d0c000 !important;
+}
+
 .app-width-50-percent {
     width: 50%;
+}
+
+@media only screen and (max-width:500px) { 
+    .app-width-50-percent {
+        width: 100%;
+    }
 }
 
 .app-max-width-265 {

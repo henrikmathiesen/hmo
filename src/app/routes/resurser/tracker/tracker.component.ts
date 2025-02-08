@@ -77,6 +77,9 @@ export class TrackerComponent implements OnInit {
             case RatingEnum.stammer_helt: {
                 return 'bg-success text-white';
             }
+            case RatingEnum.stammer_nastan_helt: {
+                return 'bg-warning text-white';
+            }
             case RatingEnum.stammer_delvis: {
                 return 'bg-danger text-white';
             }
@@ -108,7 +111,12 @@ export class TrackerComponent implements OnInit {
     private setInTracker() {
         const trackerItem: TrackerInterface = {
             id: this.getId(this.trackerCalendarModel),
-            rating: this.ratingModel
+            rating: this.ratingModel,
+            date: { 
+                day: this.trackerCalendarModel.day, 
+                month: this.trackerCalendarModel.month,
+                year: this.trackerCalendarModel.year
+            }
         };
 
         if (this.trackerModel.find(v => v.id === trackerItem.id)) {
