@@ -1,0 +1,14 @@
+@media only screen and (min-width:992px) { 
+    app-tracker-milestones {
+        position: relative;
+        top: 32px;
+    }
+}
+
+@media only screen and (min-width:1200px) { 
+    app-tracker-milestones {
+        position: relative;
+        top: 52px;
+    }
+}
+
