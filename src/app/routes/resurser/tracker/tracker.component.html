@@ -31,7 +31,7 @@
                 <option [value]="RatingEnum.stammer_inte">{{ RatingEnum.stammer_inte }}</option>
             </select>
         </div>
-        <div class="mt-4" *ngIf="ratingForSelectedDay !== RatingEnum.placeholder">
+        <div class="mt-4">
             <h2 class="h5">Ditt svar</h2>
             <app-rating-badge [ratingForSelectedDay]="ratingForSelectedDay"></app-rating-badge>
         </div>

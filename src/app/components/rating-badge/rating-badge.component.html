@@ -1,5 +1,6 @@
 <span class="badge text-white" 
     [ngClass]="{ 
+        'invisible': ratingForSelectedDay === RatingEnum.placeholder,
         'badge-primary': ratingForSelectedDay === RatingEnum.stammer_inte, 
         'badge-danger': ratingForSelectedDay === RatingEnum.stammer_delvis, 
         'badge-warning': ratingForSelectedDay === RatingEnum.stammer_nastan_helt, 

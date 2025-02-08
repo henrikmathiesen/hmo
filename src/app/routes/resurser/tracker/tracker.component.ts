@@ -18,7 +18,8 @@ import { RatingEnum, TrackerInterface } from '../../../models';
     imports: [
         NgIf, NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe,
         RatingBadgeComponent, TrackerTekniskInfoComponent, TrackerMilestonesComponent],
-    templateUrl: './tracker.component.html'
+    templateUrl: './tracker.component.html',
+    styleUrls: ['./tracker.component.css']
 })
 export class TrackerComponent implements OnInit {
     trackerCalendarModel: NgbDateStruct = { day: 0, month: 0, year: 0 };

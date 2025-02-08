@@ -4,6 +4,7 @@ html, body {
 
 .badge {
     font-size: 100% !important;
+    white-space: normal !important;
 }
 
 .badge-warning, .bg-warning {
