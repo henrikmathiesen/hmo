@@ -1,4 +1,4 @@
 <blockquote class="blockquote mb-0">
-    <p class="mb-0 text-right" [ngClass]="{ 'app-small-p' : smallP }">{{ p }}</p>
-    <footer class="blockquote-footer text-right">{{ f }}</footer>
+    <p class="mb-0" [ngClass]="{ 'app-small-p' : smallP, 'text-right': textRight }">{{ p }}</p>
+    <footer class="blockquote-footer" [ngClass]="{ 'text-right': textRight }">{{ f }}</footer>
 </blockquote>

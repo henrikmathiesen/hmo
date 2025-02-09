@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-5">
+        <div class="app-dp-tracker mb-4">
+            <ngb-datepicker #dpTracker [ngModel]="trackerCalendarModel" [showWeekNumbers]="true"
+                [dayTemplate]="dpTrackerCustomDay" (dateSelect)="onTrackerCalendarSelect($event)" />
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary btn-sm ml-5" (click)="trackerCalendarGoToToday(dpTracker)">
+                Gå till i dag
+            </button>
+        </div>
+        <div class="app-max-width-265 d-none d-md-block mt-5">
+            <hr class="ml-0">
+            <app-tracker-teknisk-info></app-tracker-teknisk-info>
+        </div>
+    </div>
+    <div class="col-md-7 mt-4 mt-md-0">
+        <h2 class="h5">Besvara: {{ trackerCalendarModel | ngbDateToDate | date }}</h2>
+        <p>
+            Påstående: Denna dag i mitt liv gjorde jag inte tvångsbeteenden
+            (handlingar, undvikanden, återförsäkringssökande, bekännelser, tvångstankar (lugnande tankar / mottankar)).
+            I stället levde jag mitt liv som om mina obsessions inte existerade.
+        </p>
+        <div>
+            <select #trackerSelect class="form-control app-width-50-percent" [ngModel]="ratingModel"
+                (change)="onTrackerRatingSelect(trackerSelect.value)" 
+                [attr.disabled]="!datePickerDateIsTodayOrEarlier ? true : null">
+                <option [value]="RatingEnum.placeholder">{{ RatingEnum.placeholder }}</option>
+                <option [value]="RatingEnum.stammer_helt">{{ RatingEnum.stammer_helt }}</option>
+                <option [value]="RatingEnum.stammer_nastan_helt">{{ RatingEnum.stammer_nastan_helt }}</option>
+                <option [value]="RatingEnum.stammer_delvis">{{ RatingEnum.stammer_delvis }}</option>
+                <option [value]="RatingEnum.stammer_inte">{{ RatingEnum.stammer_inte }}</option>
+            </select>
+        </div>
+        <div class="mt-4">
+            <h2 class="h5">Ditt svar</h2>
+            <app-rating-badge [ratingForSelectedDay]="ratingForSelectedDay"></app-rating-badge>
+        </div>
+        <div class="mt-5">
+            <app-tracker-milestones [trackerModel]="trackerModel"></app-tracker-milestones>
+        </div>
+        <div class="mt-5 d-md-none">
+            <hr class="ml-0">
+            <app-tracker-teknisk-info></app-tracker-teknisk-info>
+        </div>
+    </div>
+</div>
+
+<ng-template #dpTrackerCustomDay let-date let-currentMonth="currentMonth" let-selected="selected">
+    <div class="app-dp-custom-day" [class.hidden]="date.month !== currentMonth"
+        [class.app-dp-tracker-selected]="selected" [ngClass]="dpTrackerCustomDayGetCssClass(date)">
+        {{ date.day }}
+    </div>
+</ng-template>
