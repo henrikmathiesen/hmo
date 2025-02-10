@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgIf, NgClass } from '@angular/common';
 
 import { TrackerInterface, RatingEnum, MilestoneInterface } from '../../models';
@@ -18,6 +18,7 @@ export class TrackerMilestonesComponent implements OnInit {
         private ngbDateToDatePipe: NgbDateToDatePipe
     ) { }
 
+    @Output() newMilesStonesSparkHappened = new EventEmitter(false);
     @Input() trackerModel: TrackerInterface[] = [];
     milestones: MilestoneInterface[] = [
         // EASY
@@ -150,10 +151,12 @@ export class TrackerMilestonesComponent implements OnInit {
     }
 
     private calculateUpdatedMilestones(old: number, current: number) {
-        this.newMilesStonesSpark = current > old;
-        this.newMilesStonesSparkMark = this.newMilesStonesSpark;
-
-        setTimeout(() => { this.newMilesStonesSparkMark = false; }, 5000);
+        if (current > old) {
+            setTimeout(() => { this.newMilesStonesSparkHappened.emit(true) });
+            this.newMilesStonesSpark = true;
+            this.newMilesStonesSparkMark = true;
+            setTimeout(() => { this.newMilesStonesSparkMark = false; }, 5000);
+        }
     }
 
     private setAchivedMilestones() {

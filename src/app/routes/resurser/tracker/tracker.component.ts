@@ -12,6 +12,7 @@ import {
 import { RatingBadgeComponent, TrackerTekniskInfoComponent, TrackerMilestonesComponent } from '../../../components';
 import { NgbDateToDatePipe } from '../../../pipes';
 import { RatingEnum, TrackerInterface } from '../../../models';
+import { GetDeviceWidthService } from '../../../services';
 
 @Component({
     selector: 'app-tracker',
@@ -34,7 +35,8 @@ export class TrackerComponent implements OnInit {
 
     constructor(
         private calendar: NgbCalendar,
-        private ngbDateToDatePipe: NgbDateToDatePipe
+        private ngbDateToDatePipe: NgbDateToDatePipe,
+        private getDeviceWidthService: GetDeviceWidthService
     ) { }
 
     ngOnInit(): void {
@@ -107,6 +109,18 @@ export class TrackerComponent implements OnInit {
         this.checkDatePickerDateIsTodayOrEarlier();
     }
 
+    onNewMilesStonesSparkHappened(v: boolean) {
+        const isMobileDesign = this.getDeviceWidthService.getIsMD() === false;
+
+        if (v && isMobileDesign) {
+            const el = document.getElementById('tracker-ms-scroll');
+
+            if (el) {
+                el.scrollIntoView();
+            }
+        }
+    }
+
     private trackerCalendarSetModelToday() {
         const today = this.calendar.getToday();
         this.trackerCalendarModel = today;
@@ -153,7 +167,7 @@ export class TrackerComponent implements OnInit {
     private checkDatePickerDateIsTodayOrEarlier() {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        
+
         const datepickerDate = this.ngbDateToDatePipe.transform(this.trackerCalendarModel);
 
         this.datePickerDateIsTodayOrEarlier = datepickerDate <= today;
