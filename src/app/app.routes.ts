@@ -6,7 +6,8 @@ import {
     StartComponent,
     TerapinComponent,
     TestComponent,
-    TrackerComponent
+    TrackerComponent,
+    TrackerAdminComponent
 } from './routes';
 
 export const routes: Routes = [
@@ -33,6 +34,10 @@ export const routes: Routes = [
     {
         path: 'resurser/tracker',
         component: TrackerComponent
+    },
+    {
+        path: 'resurser/tracker/administrera',
+        component: TrackerAdminComponent
     },
     {
         path: '',

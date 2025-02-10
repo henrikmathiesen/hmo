@@ -15,6 +15,11 @@ html, body {
     width: 50%;
 }
 
+.app-move-up-1px {
+    position: relative;
+    top: -1px;
+}
+
 @media only screen and (max-width:500px) { 
     .app-width-50-percent {
         width: 100%;

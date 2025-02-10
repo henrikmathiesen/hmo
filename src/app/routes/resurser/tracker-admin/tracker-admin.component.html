@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+        <div class="ml-5 ml-md-0">
+            <a [routerLink]="['../']" class="font-weight-bold text-decoration-none">
+                <span class="app-move-up-1px">
+                    &lt;&lt;&lt;
+                </span>
+                Get me out of this mess!
+            </a>
+        </div>
+        <div class="mt-5">
+            <h2 class="h5 mb-3">Radera alla svar</h2>
+            <p>
+                Detta raderar local storage för denna webb-app.
+            </p>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input id="admin-radera-ls-cb" type="checkbox" class="custom-control-input" 
+                        [ngModel]="adminRaderaLsCb" (ngModelChange)="onAdminRaderaLsCb($event)">
+                    <label for="admin-radera-ls-cb" class="custom-control-label">Jag är säker</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary"
+                [attr.disabled]="!adminRaderaLsCb ? true : null"
+                (click)="onAdminRaderaLsCbConfirmed()">Radera!</button>
+            </div>
+        </div>
+        <div class="mt-5">
+            <h2 class="h5 mb-3">Exportera data</h2>
+            <p>
+                Local storage för denna webb-app, som JSON.
+            </p>
+            <p>
+                Kommer i nästa release...
+            </p>
+            <!-- TODO -->
+            <!-- <div class="form-group">
+                <button type="button">Ladda ner</button>
+            </div> -->
+            <!--
+                https://stackoverflow.com/questions/23024460/javascript-i-created-a-blob-from-a-string-how-do-i-get-the-string-back-out
+                https://www.npmjs.com/package/ngx-filesaver
+            -->
+        </div>
+        <div class="mt-5">
+            <h2 class="h5 mb-3">Importera data</h2>
+            <p>
+                Klistra in exporterad JSON.
+            </p>
+            <p>
+                Kommer i nästa release...
+            </p>
+        </div>
+    </div>
+</div>
