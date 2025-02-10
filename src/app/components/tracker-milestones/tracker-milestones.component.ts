@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgIf, NgClass } from '@angular/common';
 
-import { TrackerInterface, RatingEnum, MilestoneInterface } from '../../models';
+import { TrackerInterface, RatingEnum, MilestoneInterface, LocalstorageKeysEnum } from '../../models';
 import { QuoteComponent } from '../quote/quote.component';
 import { TrackerAchivementsComponent } from '../tracker-achivements/tracker-achivements.component';
 import { NgbDateToDatePipe } from '../../pipes';
@@ -121,8 +121,7 @@ export class TrackerMilestonesComponent implements OnInit {
     newMilesStonesSpark = false;
     newMilesStonesSparkMark = false;
 
-    private readonly localStorageKey = 'hmo_milestones';
-
+    private readonly localStorageKey = LocalstorageKeysEnum.milestones;
 
     ngOnInit() {
         const localStorageItem = localStorage.getItem(this.localStorageKey) || 0;

@@ -12,19 +12,19 @@
 
     <ng-container *ngIf="!!achivedMilestones.length">
         <ng-container *ngIf="!!achivedMilestonesJokers.length">
-            <h2 class="h6">Jokers</h2>
+            <h3 class="h6">Jokers</h3>
             <app-tracker-achivements [achivedMilestones]="achivedMilestonesJokers"></app-tracker-achivements>
         </ng-container>
         <ng-container *ngIf="!!achivedMilestonesEasy.length">
-            <h2 class="h6">Easy</h2>
+            <h3 class="h6">Easy</h3>
             <app-tracker-achivements [achivedMilestones]="achivedMilestonesEasy"></app-tracker-achivements>
         </ng-container>
         <ng-container *ngIf="!!achivedMilestonesMedium.length">
-            <h2 class="h6">Medium</h2>
+            <h3 class="h6">Medium</h3>
             <app-tracker-achivements [achivedMilestones]="achivedMilestonesMedium"></app-tracker-achivements>
         </ng-container>
         <ng-container *ngIf="!!achivedMilestonesHard.length">
-            <h2 class="h6">Hard</h2>
+            <h3 class="h6">Hard</h3>
             <app-tracker-achivements [achivedMilestones]="achivedMilestonesHard"></app-tracker-achivements>
         </ng-container>
     </ng-container>

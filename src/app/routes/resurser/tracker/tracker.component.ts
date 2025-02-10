@@ -11,7 +11,7 @@ import {
 
 import { RatingBadgeComponent, TrackerTekniskInfoComponent, TrackerMilestonesComponent } from '../../../components';
 import { NgbDateToDatePipe } from '../../../pipes';
-import { RatingEnum, TrackerInterface } from '../../../models';
+import { RatingEnum, TrackerInterface, LocalstorageKeysEnum } from '../../../models';
 import { GetDeviceWidthService } from '../../../services';
 
 @Component({
@@ -31,7 +31,7 @@ export class TrackerComponent implements OnInit {
     datePickerDateIsTodayOrEarlier = false;
 
     ratingForSelectedDay: RatingEnum = RatingEnum.placeholder;
-    private readonly localStorageKey = 'hmo_tracker';
+    private readonly localStorageKey = LocalstorageKeysEnum.tracker;
 
     constructor(
         private calendar: NgbCalendar,
