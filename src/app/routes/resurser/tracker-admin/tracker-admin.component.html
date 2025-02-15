@@ -16,42 +16,39 @@
             </p>
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
-                    <input id="admin-radera-ls-cb" type="checkbox" class="custom-control-input" 
+                    <input id="admin-radera-ls-cb" type="checkbox" class="custom-control-input"
                         [ngModel]="adminRaderaLsCb" (ngModelChange)="onAdminRaderaLsCb($event)">
                     <label for="admin-radera-ls-cb" class="custom-control-label">Jag är säker</label>
                 </div>
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-primary"
-                [attr.disabled]="!adminRaderaLsCb ? true : null"
-                (click)="onAdminRaderaLsCbConfirmed()">Radera!</button>
+                <button type="button" class="btn btn-primary" [attr.disabled]="!adminRaderaLsCb ? true : null"
+                    (click)="onAdminRaderaLsCbConfirmed()">Radera!</button>
             </div>
         </div>
         <div class="mt-5">
             <h2 class="h5 mb-3">Exportera data</h2>
             <p>
-                Local storage för denna webb-app, som JSON.
+                Ladda ner local storage för denna webb-app, som JSON.
             </p>
-            <p>
-                Kommer i nästa release...
-            </p>
-            <!-- TODO -->
-            <!-- <div class="form-group">
-                <button type="button">Ladda ner</button>
-            </div> -->
-            <!--
-                https://stackoverflow.com/questions/23024460/javascript-i-created-a-blob-from-a-string-how-do-i-get-the-string-back-out
-                https://www.npmjs.com/package/ngx-filesaver
-            -->
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="onDownloadJson()">Ladda ner</button>
+            </div>
         </div>
         <div class="mt-5">
             <h2 class="h5 mb-3">Importera data</h2>
             <p>
-                Klistra in exporterad JSON.
+                Ladda upp local storage för denna webb-app, som JSON.
             </p>
-            <p>
-                Kommer i nästa release...
+            <p class="text-danger" *ngIf="uploadedJsonIsValid === false">
+                Det är något som inte stämmer. Se över JSON-datan.
             </p>
+            <div class="form-group app-width-50-percent">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ladda-upp" (change)="onUploadJson($event)">
+                    <label class="custom-file-label" for="ladda-upp">Ladda upp</label>
+                </div>
+            </div>
         </div>
     </div>
 </div>
