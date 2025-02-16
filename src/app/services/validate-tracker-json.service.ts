@@ -13,7 +13,19 @@ export class ValidateTrackerJsonService {
     }
 
     isValid(trackerModel: TrackerInterface[]): boolean {
+        if (!trackerModel) {
+            return false;
+        }
+
         return this.requiredValidationIsValid(trackerModel);
+    }
+
+    isSomething(trackerModel: any): boolean {
+        return trackerModel != null;
+    }
+
+    isAnArray(trackerModel: any): boolean {
+        return Array.isArray(trackerModel);
     }
 
 }

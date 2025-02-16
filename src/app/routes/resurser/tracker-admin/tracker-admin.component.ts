@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -13,10 +13,14 @@ import { ValidateTrackerJsonService } from '../../../services';
     templateUrl: './tracker-admin.component.html'
 })
 export class TrackerAdminComponent {
+    @ViewChild('laddaUpp') laddaUpp: any;
+
     private readonly localStorageKey = LocalstorageKeysEnum.tracker;
 
     adminRaderaLsCb = false;
     uploadedJsonIsValid: boolean | null = null;
+    uploadJsonInprogress = false;
+    laddaUppLoaderStyle = { width: '50%' };
 
     constructor(
         private fileSaver: FileSaverService,
@@ -41,6 +45,10 @@ export class TrackerAdminComponent {
     }
 
     onUploadJson(event: any) {
+        this.uploadJsonInprogress = true;
+        this.setLoaderLengthProgress();
+        this.uploadedJsonIsValid = null;
+
         const file: File = event.target.files[0];
 
         if (file) {
@@ -49,6 +57,7 @@ export class TrackerAdminComponent {
             reader.onload = (e) => {
                 if (e && e.target) {
                     this.validateJson(e.target.result);
+                    this.hideLoaderWithLittleDelay();
                 }
             };
 
@@ -57,34 +66,50 @@ export class TrackerAdminComponent {
     }
 
     private validateJson(uploadedJson: any) {
+        let parsed;
         let finalParsed;
+        let isSomething;
+        let isAnArray;
 
         try {
-            console.log('TRYING TO PARSE');
-            const parsed = JSON.parse(uploadedJson);
-            finalParsed = JSON.parse(parsed); // for some reason this is needed
+            parsed = JSON.parse(uploadedJson);
         } catch {
-            console.log('CAUGHT ERROR - STOPPING');
             this.uploadedJsonIsValid = false;
             return;
         }
 
-        console.log('DO SIMPLE VALIDATION OF PROPERTIES');
-        
+        isSomething = this.validateTrackerJsonService.isSomething(parsed);
+
+        if (!isSomething) {
+            this.uploadedJsonIsValid = false;
+        }
+
+        isAnArray = this.validateTrackerJsonService.isAnArray(parsed);
+
+        if (!isAnArray) {
+            finalParsed = JSON.parse(parsed);
+        } else {
+            finalParsed = parsed;
+        }
+
         this.uploadedJsonIsValid = this.validateTrackerJsonService.isValid((finalParsed as TrackerInterface[]));
 
         if (this.uploadedJsonIsValid) {
-            console.log('PROPERTIES ARE VALID - SETTING IN LOCALSTORAGE');
             localStorage.setItem(this.localStorageKey, JSON.stringify((finalParsed as TrackerInterface[])));
         }
+
+        this.laddaUpp.value = '';
     }
 
-    /* 
-        TODO <======= important
+    private hideLoaderWithLittleDelay() {
+        setTimeout(() => {
+            this.setLoaderLengthProgress('90%');
+        });
 
-        https://blog.angular-university.io/angular-file-upload/
-        Don't forget to use fileUpload.value = ''; before fileUpload.click();.
-        Otherwise, the same file can't be selected again.
-    
-    */
+        setTimeout(() => { this.uploadJsonInprogress = false; }, 1000);
+    }
+
+    private setLoaderLengthProgress(w = '50%') {
+        this.laddaUppLoaderStyle = { ...this.laddaUppLoaderStyle, width: w };
+    }
 }

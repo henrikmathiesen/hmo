@@ -40,13 +40,19 @@
             <p>
                 Ladda upp local storage för denna webb-app, som JSON.
             </p>
-            <p class="text-danger" *ngIf="uploadedJsonIsValid === false">
-                Det är något som inte stämmer. Se över JSON-datan.
-            </p>
             <div class="form-group app-width-50-percent">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="ladda-upp" accept="application/json" (change)="onUploadJson($event)">
+                    <input #laddaUpp type="file" class="custom-file-input" id="ladda-upp" accept="application/json" (change)="onUploadJson($event)">
                     <label class="custom-file-label" for="ladda-upp">Ladda upp</label>
+                </div>
+                <div class="progress mt-3" *ngIf="uploadJsonInprogress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" [style]="laddaUppLoaderStyle"></div>
+                  </div>
+                <div class="text-danger mt-3" *ngIf="uploadedJsonIsValid === false && !uploadJsonInprogress">
+                    Det är något som inte stämmer. Se över JSON-datan.
+                </div>
+                <div class="text-success mt-3" *ngIf="uploadedJsonIsValid === true && !uploadJsonInprogress">
+                    Local storage uppdaterades korrekt.
                 </div>
             </div>
         </div>
