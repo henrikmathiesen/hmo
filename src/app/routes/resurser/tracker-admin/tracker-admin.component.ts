@@ -1,15 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgIf } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FileSaverModule, FileSaverService } from 'ngx-filesaver';
 
+import { BackLinkComponent } from '../../../components';
 import { LocalstorageKeysEnum, TrackerInterface } from '../../../models';
 import { ValidateTrackerJsonService } from '../../../services';
 
 @Component({
     selector: 'app-tracker-admin',
-    imports: [RouterLink, FormsModule, FileSaverModule, NgIf],
+    imports: [FormsModule, FileSaverModule, NgIf, BackLinkComponent],
     templateUrl: './tracker-admin.component.html'
 })
 export class TrackerAdminComponent {
