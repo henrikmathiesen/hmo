@@ -8,6 +8,7 @@ import { RatingEnum } from '../../models';
     templateUrl: './rating-badge.component.html'
 })
 export class RatingBadgeComponent {
-    @Input() ratingForSelectedDay: RatingEnum = RatingEnum.placeholder;
+    @Input() ratingForSelectedDay: RatingEnum | string = RatingEnum.placeholder;
+    @Input() smallText = false;
     RatingEnum = RatingEnum;
 }

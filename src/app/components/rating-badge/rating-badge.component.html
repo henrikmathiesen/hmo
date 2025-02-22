@@ -5,6 +5,7 @@
         'badge-danger': ratingForSelectedDay === RatingEnum.stammer_delvis, 
         'badge-warning': ratingForSelectedDay === RatingEnum.stammer_nastan_helt, 
         'badge-success': ratingForSelectedDay === RatingEnum.stammer_helt
-    }">
+    }"
+    [class.small]="smallText">
     {{ ratingForSelectedDay }}
 </span>
