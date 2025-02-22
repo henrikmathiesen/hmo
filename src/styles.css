@@ -2,6 +2,8 @@ html, body {
     height: 100%;
 }
 
+/* Bootstrap override */
+
 .badge {
     font-size: 100% !important;
     white-space: normal !important;
@@ -10,6 +12,19 @@ html, body {
 .badge-warning, .bg-warning {
     background-color: #d0c000 !important;
 }
+
+.custom-file-label::after {
+    background-color: #eb6864;
+    color: white;
+}
+
+/* Form */
+
+.app-text-area {
+    min-height: 10rem;
+}
+
+/* Utils */
 
 .app-width-50-percent {
     width: 50%;
@@ -29,6 +44,8 @@ html, body {
 .app-max-width-265 {
     max-width: 265px;
 }
+
+/* Datepicker */
 
 .app-dp-tracker .ngb-dp-day .app-dp-custom-day {
     text-align: center;

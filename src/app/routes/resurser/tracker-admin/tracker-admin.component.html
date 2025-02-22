@@ -16,41 +16,58 @@
             </p>
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
-                    <input id="admin-radera-ls-cb" type="checkbox" class="custom-control-input" 
+                    <input id="admin-radera-ls-cb" type="checkbox" class="custom-control-input"
                         [ngModel]="adminRaderaLsCb" (ngModelChange)="onAdminRaderaLsCb($event)">
                     <label for="admin-radera-ls-cb" class="custom-control-label">Jag är säker</label>
                 </div>
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-primary"
-                [attr.disabled]="!adminRaderaLsCb ? true : null"
-                (click)="onAdminRaderaLsCbConfirmed()">Radera!</button>
+                <button type="button" class="btn btn-primary" [attr.disabled]="!adminRaderaLsCb ? true : null"
+                    (click)="onAdminRaderaLsCbConfirmed()">Radera!</button>
             </div>
         </div>
         <div class="mt-5">
             <h2 class="h5 mb-3">Exportera data</h2>
             <p>
-                Local storage för denna webb-app, som JSON.
+                Ladda ner local storage för denna webb-app, som JSON.
             </p>
-            <p>
-                Kommer i nästa release...
-            </p>
-            <!-- TODO -->
-            <!-- <div class="form-group">
-                <button type="button">Ladda ner</button>
-            </div> -->
-            <!--
-                https://stackoverflow.com/questions/23024460/javascript-i-created-a-blob-from-a-string-how-do-i-get-the-string-back-out
-                https://www.npmjs.com/package/ngx-filesaver
-            -->
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)="onDownloadJson()">Ladda ner</button>
+            </div>
         </div>
         <div class="mt-5">
             <h2 class="h5 mb-3">Importera data</h2>
             <p>
-                Klistra in exporterad JSON.
+                Ladda upp local storage för denna webb-app, som JSON.
             </p>
-            <p>
-                Kommer i nästa release...
+            <div class="form-group app-width-50-percent">
+                <div class="custom-file">
+                    <input #laddaUpp type="file" class="custom-file-input" id="ladda-upp" accept="application/json" (change)="onUploadJson($event)">
+                    <label class="custom-file-label" for="ladda-upp">Ladda upp</label>
+                </div>
+                <div class="progress mt-3" *ngIf="uploadJsonInprogress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" [style]="laddaUppLoaderStyle"></div>
+                  </div>
+                <div class="text-danger mt-3" *ngIf="uploadedJsonIsValid === false && !uploadJsonInprogress">
+                    Det är något som inte stämmer. Se över JSON-datan.
+                </div>
+                <div class="text-success mt-3" *ngIf="uploadedJsonIsValid === true && !uploadJsonInprogress">
+                    Local storage uppdaterades korrekt.
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 pt-2 app-width-50-percent">
+            <hr>
+            <h2 class="h6">Varför Exportera och Importera?</h2>
+            <p class="small">
+                Om du byter webbläsare/enhet så kommer dina svar vara borta.
+                Exportera-funktionen genererar en backup av dina svar. Du kan sen
+                importera dem i den andra webbläsaren.
+            </p>
+            <p class="small">
+                Ett annat syfte skulle kunna vara att exportera dina svar,
+                och sen maila den filen till din psykolog, som i sin tur kan importera
+                filen och granska dina framsteg.
             </p>
         </div>
     </div>
