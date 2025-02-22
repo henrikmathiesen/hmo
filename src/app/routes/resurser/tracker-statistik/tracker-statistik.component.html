@@ -4,8 +4,55 @@
         <div class="ml-5 ml-md-0">
             <app-back-link [label]="'I have seen enough'"></app-back-link>
         </div>
-        <div class="mt-5">
-            Hello
+        <div class="row mt-5">
+            <div class="col">
+                <h2 class="h5">Statistik</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto">
+                <p>
+                    Du har kämpat i totalt {{ trackerModel.length }} {{ trackerModel.length === 1 ? 'dag' : 'dagar' }}
+                </p>
+            </div>
+            <div class="col-md-4">
+                <app-quote 
+                    [p]="trackerModel.length | trackerStatistikQuote" 
+                    [f]="trackerModel.length | trackerStatistikQuote: false" 
+                    [smallP]="true"></app-quote>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="alert alert-secondary">
+                    <h2 class="h6">Antal dagar med rating</h2>
+                    <ul class="list-unstyled mb-0">
+                        <li *ngFor="let rating of ratingArr" class="py-1 d-flex justify-content-between">
+                            <span>
+                                <app-rating-badge [ratingForSelectedDay]="rating" [smallText]="true"></app-rating-badge>
+                            </span>
+                            <span>
+                                {{ rating | trackerStatistikAntalDagar: trackerModel }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="alert alert-secondary">
+                    <h2 class="h6">Procent dagar med rating</h2>
+                    <ul class="list-unstyled mb-0">
+                        <li *ngFor="let rating of ratingArr" class="py-1 d-flex justify-content-between">
+                            <span>
+                                <app-rating-badge [ratingForSelectedDay]="rating" [smallText]="true"></app-rating-badge>
+                            </span>
+                            <span>
+                                {{ rating | trackerStatistikProcentDagar: trackerModel | displayPercent }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
