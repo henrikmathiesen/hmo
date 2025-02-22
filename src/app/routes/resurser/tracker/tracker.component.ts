@@ -9,7 +9,7 @@ import {
 }
     from '@ng-bootstrap/ng-bootstrap';
 
-import { RatingBadgeComponent, TrackerTekniskInfoComponent, TrackerMilestonesComponent } from '../../../components';
+import { RatingBadgeComponent, TrackerAsideInfoComponent, TrackerMilestonesComponent } from '../../../components';
 import { NgbDateToDatePipe } from '../../../pipes';
 import { RatingEnum, TrackerInterface, LocalstorageKeysEnum } from '../../../models';
 import { GetDeviceWidthService } from '../../../services';
@@ -18,7 +18,7 @@ import { GetDeviceWidthService } from '../../../services';
     selector: 'app-tracker',
     imports: [
         NgClass, FormsModule, NgbDatepickerModule, DatePipe, NgbDateToDatePipe,
-        RatingBadgeComponent, TrackerTekniskInfoComponent, TrackerMilestonesComponent],
+        RatingBadgeComponent, TrackerAsideInfoComponent, TrackerMilestonesComponent],
     providers: [NgbDateToDatePipe],
     templateUrl: './tracker.component.html',
     styleUrls: ['./tracker.component.css']
