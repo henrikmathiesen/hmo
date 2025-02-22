@@ -22,7 +22,6 @@
             I stället levde jag mitt liv som om mina obsessions inte existerade.
         </p>
         <div>
-            <!-- TODO: see if (ngModelChange) or [()] works here as well (see tracker-admin.component) -->
             <select #trackerSelect class="form-control app-width-50-percent" [ngModel]="ratingModel"
                 (change)="onTrackerRatingSelect(trackerSelect.value)"
                 [attr.disabled]="!datePickerDateIsTodayOrEarlier ? true : null">
