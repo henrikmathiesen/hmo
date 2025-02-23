@@ -7,5 +7,10 @@
         'badge-success': ratingForSelectedDay === RatingEnum.stammer_helt
     }"
     [class.small]="smallText">
-    {{ ratingForSelectedDay }}
+    <ng-content *ngIf="!renderPointsInstead">
+        {{ ratingForSelectedDay }}
+    </ng-content>
+    <ng-content *ngIf="renderPointsInstead">
+        {{ ratingForSelectedDay | ratingInPoints }}
+    </ng-content>
 </span>

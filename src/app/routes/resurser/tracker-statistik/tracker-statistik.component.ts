@@ -3,7 +3,13 @@ import { NgFor } from '@angular/common';
 
 import { BackLinkComponent, QuoteComponent, RatingBadgeComponent } from '../../../components';
 import { LocalstorageKeysEnum, TrackerInterface, RatingEnum } from '../../../models';
-import { TrackerStatistikQuotePipe, TrackerStatistikAntalDagarPipe, TrackerStatistikProcentDagarPipe, DisplayPercentPipe } from '../../../pipes';
+import { 
+    TrackerStatistikQuotePipe, 
+    TrackerStatistikAntalDagarPipe, 
+    TrackerStatistikProcentDagarPipe, 
+    DisplayPercentPipe,
+    RatingAvaragePipe
+} from '../../../pipes';
 
 @Component({
     selector: 'app-tracker-statistik',
@@ -15,6 +21,7 @@ import { TrackerStatistikQuotePipe, TrackerStatistikAntalDagarPipe, TrackerStati
         TrackerStatistikAntalDagarPipe, 
         TrackerStatistikProcentDagarPipe,
         DisplayPercentPipe,
+        RatingAvaragePipe,
         NgFor
     ],
     templateUrl: './tracker-statistik.component.html'

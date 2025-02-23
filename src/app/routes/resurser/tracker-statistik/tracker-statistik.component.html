@@ -23,8 +23,9 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-md-6">
-                <div class="alert alert-secondary">
+            <div class="col-lg-6">
+                <!-- TODO: Refactor alerts to component -->
+                <div class="alert alert-secondary mb-3 mb-lg-0">
                     <h2 class="h6">Antal dagar med rating</h2>
                     <ul class="list-unstyled mb-0">
                         <li *ngFor="let rating of ratingArr" class="py-1 d-flex justify-content-between">
@@ -38,8 +39,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="alert alert-secondary">
+            <div class="col-lg-6">
+                <!-- TODO: Refactor alerts to component -->
+                <div class="alert alert-secondary mb-3 mb-lg-0">
                     <h2 class="h6">Procent dagar med rating</h2>
                     <ul class="list-unstyled mb-0">
                         <li *ngFor="let rating of ratingArr" class="py-1 d-flex justify-content-between">
@@ -51,6 +53,25 @@
                             </span>
                         </li>
                     </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <div class="alert alert-secondary">
+                    <h2 class="h6 text-center">Ditt snittbetyg</h2>
+                    <p class="d-inline mr-2">
+                        Givet följande poängsättning: 
+                    </p>
+                    <ul class="list-unstyled list-inline d-inline mb-0 app-move-up-1px">
+                        <li *ngFor="let rating of ratingArr" class="list-inline-item">
+                            <app-rating-badge [ratingForSelectedDay]="rating" [smallText]="true" [renderPointsInstead]="true"></app-rating-badge>
+                        </li>
+                    </ul>
+                    <p>
+                        <!-- TODO: Finnish pipe, see just-a-day -->
+                        Så är ditt snittbetyg: {{ trackerModel | ratingAvarage }}
+                    </p>
                 </div>
             </div>
         </div>
