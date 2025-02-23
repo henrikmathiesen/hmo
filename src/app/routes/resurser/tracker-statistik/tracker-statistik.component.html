@@ -41,6 +41,7 @@
             </div>
             <div class="col-lg-6">
                 <!-- TODO: Refactor alerts to component -->
+                 <!-- TODO: Also remove private prop for localstorage key, use enum everywhere -->
                 <div class="alert alert-secondary mb-3 mb-lg-0">
                     <h2 class="h6">Procent dagar med rating</h2>
                     <ul class="list-unstyled mb-0">
@@ -69,9 +70,13 @@
                         </li>
                     </ul>
                     <p class="mb-0">
-                        Så är ditt snittbetyg: {{ trackerModel | ratingAvarage }}
+                        <span class="d-block">Så är ditt snittbetyg: {{ currentAvarageRating }}</span>
+                        <span class="d-block">Ditt förra snittbetyg: {{ prevAvarageRating }}</span>
                     </p>
                 </div>
+            </div>
+            <div class="col-lg-6 mt-3 mt-lg-0 text-center">
+                <span [attr.data-feather]="moodIcon" class="app-mood-icon" appFeatherIcon *ngIf="!!moodIcon"></span>
             </div>
         </div>
     </div>

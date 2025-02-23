@@ -34,6 +34,7 @@ export class TrackerAdminComponent {
     onAdminRaderaLsCbConfirmed() {
         localStorage.removeItem(LocalstorageKeysEnum.milestones);
         localStorage.removeItem(LocalstorageKeysEnum.tracker);
+        localStorage.removeItem(LocalstorageKeysEnum.avarage);
         this.adminRaderaLsCb = false;
     }
 
