@@ -8,7 +8,8 @@ import {
     TrackerStatistikAntalDagarPipe, 
     TrackerStatistikProcentDagarPipe, 
     DisplayPercentPipe,
-    RatingAvaragePipe
+    RatingAvaragePipe,
+    RatingInPointsPipe
 } from '../../../pipes';
 
 @Component({
@@ -24,6 +25,7 @@ import {
         RatingAvaragePipe,
         NgFor
     ],
+    providers: [RatingInPointsPipe],
     templateUrl: './tracker-statistik.component.html'
 })
 export class TrackerStatistikComponent implements OnInit {
