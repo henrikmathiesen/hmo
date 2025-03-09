@@ -15,8 +15,6 @@ import { ValidateTrackerJsonService } from '../../../services';
 export class TrackerAdminComponent {
     @ViewChild('laddaUpp') laddaUpp: any;
 
-    private readonly localStorageKey = LocalstorageKeysEnum.tracker;
-
     adminRaderaLsCb = false;
     uploadedJsonIsValid: boolean | null = null;
     uploadJsonInprogress = false;
@@ -39,10 +37,10 @@ export class TrackerAdminComponent {
     }
 
     onDownloadJson() {
-        let trackersInLocalStorage = localStorage.getItem(this.localStorageKey);
+        let trackersInLocalStorage = localStorage.getItem(LocalstorageKeysEnum.tracker);
         trackersInLocalStorage = JSON.stringify(trackersInLocalStorage);
 
-        this.fileSaver.saveText(trackersInLocalStorage, `${this.localStorageKey}.json`);
+        this.fileSaver.saveText(trackersInLocalStorage, `${LocalstorageKeysEnum.tracker}.json`);
     }
 
     onUploadJson(event: any) {
@@ -96,7 +94,7 @@ export class TrackerAdminComponent {
         this.uploadedJsonIsValid = this.validateTrackerJsonService.isValid((finalParsed as TrackerInterface[]));
 
         if (this.uploadedJsonIsValid) {
-            localStorage.setItem(this.localStorageKey, JSON.stringify((finalParsed as TrackerInterface[])));
+            localStorage.setItem(LocalstorageKeysEnum.tracker, JSON.stringify((finalParsed as TrackerInterface[])));
         }
 
         this.laddaUpp.value = '';

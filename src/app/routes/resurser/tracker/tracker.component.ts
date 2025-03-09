@@ -31,7 +31,6 @@ export class TrackerComponent implements OnInit {
     datePickerDateIsTodayOrEarlier = false;
 
     ratingForSelectedDay: RatingEnum = RatingEnum.placeholder;
-    private readonly localStorageKey = LocalstorageKeysEnum.tracker;
 
     constructor(
         private calendar: NgbCalendar,
@@ -42,7 +41,7 @@ export class TrackerComponent implements OnInit {
     ngOnInit(): void {
         this.trackerCalendarSetModelToday();
 
-        let trackersInLocalStorage = localStorage.getItem(this.localStorageKey);
+        let trackersInLocalStorage = localStorage.getItem(LocalstorageKeysEnum.tracker);
 
         if (trackersInLocalStorage) {
             this.trackerModel = JSON.parse(trackersInLocalStorage);
@@ -146,7 +145,7 @@ export class TrackerComponent implements OnInit {
             this.trackerModel.push(trackerItem);
         }
 
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.trackerModel));
+        localStorage.setItem(LocalstorageKeysEnum.tracker, JSON.stringify(this.trackerModel));
     }
 
     private getId(date: NgbDateStruct) {

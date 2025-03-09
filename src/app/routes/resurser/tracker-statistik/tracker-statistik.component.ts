@@ -32,9 +32,6 @@ import {
     styleUrls: ['./tracker-statistik.component.css']
 })
 export class TrackerStatistikComponent implements OnInit {
-    private readonly localStorageKeyTracker = LocalstorageKeysEnum.tracker;
-    private readonly localStorageKeyAvarage = LocalstorageKeysEnum.avarage;
-
     trackerModel: TrackerInterface[] = [];
     ratingArr: string[] = [];
     currentAvarageRating = 0;
@@ -56,7 +53,7 @@ export class TrackerStatistikComponent implements OnInit {
     }
 
     private setTrackerModel() {
-        let trackersInLocalStorage = localStorage.getItem(this.localStorageKeyTracker);
+        let trackersInLocalStorage = localStorage.getItem(LocalstorageKeysEnum.tracker);
 
         if (trackersInLocalStorage) {
             this.trackerModel = JSON.parse(trackersInLocalStorage);
@@ -72,7 +69,7 @@ export class TrackerStatistikComponent implements OnInit {
     }
 
     private setPrevAvarageRating() {
-        let prevAvarageRatingInLocalStorage = localStorage.getItem(this.localStorageKeyAvarage);
+        let prevAvarageRatingInLocalStorage = localStorage.getItem(LocalstorageKeysEnum.avarage);
 
         if (prevAvarageRatingInLocalStorage) {
             this.prevAvarageRating = +prevAvarageRatingInLocalStorage;
@@ -81,7 +78,7 @@ export class TrackerStatistikComponent implements OnInit {
 
     private setCurrentAvarageRating() {
         this.currentAvarageRating = this.ratingAvaragePipe.transform(this.trackerModel);
-        localStorage.setItem(this.localStorageKeyAvarage, this.currentAvarageRating.toString());
+        localStorage.setItem(LocalstorageKeysEnum.avarage, this.currentAvarageRating.toString());
     }
 
     private setMoodIcon() {

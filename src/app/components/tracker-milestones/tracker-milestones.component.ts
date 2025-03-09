@@ -121,10 +121,8 @@ export class TrackerMilestonesComponent implements OnInit {
     newMilesStonesSpark = false;
     newMilesStonesSparkMark = false;
 
-    private readonly localStorageKey = LocalstorageKeysEnum.milestones;
-
     ngOnInit() {
-        const localStorageItem = localStorage.getItem(this.localStorageKey) || 0;
+        const localStorageItem = localStorage.getItem(LocalstorageKeysEnum.milestones) || 0;
 
         this.checkMilestoneEasy(3, 0);
         this.checkMilestoneEasy(30, 1);
@@ -146,7 +144,7 @@ export class TrackerMilestonesComponent implements OnInit {
 
         this.calculateUpdatedMilestones(+localStorageItem, this.achivedMilestones.length);
 
-        localStorage.setItem(this.localStorageKey, this.achivedMilestones.length.toString());
+        localStorage.setItem(LocalstorageKeysEnum.milestones, this.achivedMilestones.length.toString());
     }
 
     private calculateUpdatedMilestones(old: number, current: number) {
