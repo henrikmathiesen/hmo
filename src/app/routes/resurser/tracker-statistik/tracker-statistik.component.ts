@@ -1,17 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 
-import { BackLinkComponent, QuoteComponent, RatingBadgeComponent } from '../../../components';
+import { BackLinkComponent, QuoteComponent, RatingBadgeComponent, TrackerStatistikAlertComponent } from '../../../components';
 import { FeatherIcon } from '../../../directives';
 import { LocalstorageKeysEnum, TrackerInterface, RatingEnum } from '../../../models';
-import {
-    TrackerStatistikQuotePipe,
-    TrackerStatistikAntalDagarPipe,
-    TrackerStatistikProcentDagarPipe,
-    DisplayPercentPipe,
-    RatingAvaragePipe,
-    RatingInPointsPipe
-} from '../../../pipes';
+import { TrackerStatistikQuotePipe, RatingAvaragePipe, RatingInPointsPipe } from '../../../pipes';
 
 @Component({
     selector: 'app-tracker-statistik',
@@ -19,10 +12,8 @@ import {
         BackLinkComponent,
         QuoteComponent,
         RatingBadgeComponent,
+        TrackerStatistikAlertComponent,
         TrackerStatistikQuotePipe,
-        TrackerStatistikAntalDagarPipe,
-        TrackerStatistikProcentDagarPipe,
-        DisplayPercentPipe,
         FeatherIcon,
         NgFor,
         NgIf
@@ -40,7 +31,8 @@ export class TrackerStatistikComponent implements OnInit {
     moodIcon = '';
 
     constructor(
-        private ratingAvaragePipe: RatingAvaragePipe
+        private ratingAvaragePipe: RatingAvaragePipe,
+        private ratingInPointsPipe: RatingInPointsPipe
     ) { }
 
     ngOnInit(): void {
@@ -77,7 +69,10 @@ export class TrackerStatistikComponent implements OnInit {
     }
 
     private setCurrentAvarageRating() {
-        this.currentAvarageRating = this.ratingAvaragePipe.transform(this.trackerModel);
+        const ratings = this.trackerModel.map(v => v.rating);
+        const ratingInPoints = ratings.map(v => this.ratingInPointsPipe.transform(v));
+        this.currentAvarageRating = this.ratingAvaragePipe.transform(ratingInPoints);
+        
         localStorage.setItem(LocalstorageKeysEnum.avarage, this.currentAvarageRating.toString());
     }
 

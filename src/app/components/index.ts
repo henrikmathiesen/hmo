@@ -6,3 +6,4 @@ export * from './rating-badge/rating-badge.component';
 export * from './tracker-aside-info/tracker-aside-info.component';
 export * from './tracker-milestones/tracker-milestones.component';
 export * from './tracker-achivements/tracker-achivements.component';
+export * from './tracker-statistik-alert/tracker-statistik-alert.component';
