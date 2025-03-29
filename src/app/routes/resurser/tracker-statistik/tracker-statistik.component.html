@@ -34,11 +34,11 @@
             <div class="col-lg-6">
                 <div class="alert alert-secondary mb-3 mb-lg-0">
                     <h2 class="h6 text-center">Ditt snittbetyg</h2>
-                    <p class="d-inline mr-2">
+                    <p class="d-inline mr-md-2">
                         Givet följande poängsättning: 
                     </p>
                     <ul class="list-unstyled list-inline d-inline mb-0 app-move-up-1px">
-                        <li *ngFor="let rating of ratingArr" class="list-inline-item">
+                        <li *ngFor="let rating of ratingArr" class="list-inline-item app-list-inline-item">
                             <app-rating-badge [ratingForSelectedDay]="rating" [smallText]="true" [renderPointsInstead]="true"></app-rating-badge>
                         </li>
                     </ul>

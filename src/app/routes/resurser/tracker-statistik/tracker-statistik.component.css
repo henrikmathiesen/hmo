@@ -3,3 +3,13 @@
     height: 125px;
     color:whitesmoke;
 }
+
+.app-list-inline-item:not(:last-child) {
+    margin-right: .15rem;
+}
+
+@media only screen and (min-width:768px) { 
+    .app-list-inline-item:not(:last-child) {
+        margin-right: .5rem;
+    }
+}
