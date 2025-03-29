@@ -5,6 +5,12 @@
         'badge-danger': ratingForSelectedDay === RatingEnum.stammer_delvis, 
         'badge-warning': ratingForSelectedDay === RatingEnum.stammer_nastan_helt, 
         'badge-success': ratingForSelectedDay === RatingEnum.stammer_helt
-    }">
-    {{ ratingForSelectedDay }}
+    }"
+    [class.small]="smallText">
+    <ng-content *ngIf="!renderPointsInstead">
+        {{ ratingForSelectedDay }}
+    </ng-content>
+    <ng-content *ngIf="renderPointsInstead">
+        {{ ratingForSelectedDay | ratingInPoints }}
+    </ng-content>
 </span>

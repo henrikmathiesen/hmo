@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+        <div class="ml-5 ml-md-0">
+            <app-back-link [label]="'I have seen enough'"></app-back-link>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h2 class="h5">Statistik</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto">
+                <p>
+                    Du har kämpat i totalt {{ trackerModel.length }} {{ trackerModel.length === 1 ? 'dag' : 'dagar' }}
+                </p>
+            </div>
+            <div class="col-md-4">
+                <app-quote 
+                    [p]="trackerModel.length | trackerStatistikQuote" 
+                    [f]="trackerModel.length | trackerStatistikQuote: false" 
+                    [smallP]="true"></app-quote>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <app-tracker-statistik-alert [trackerModel]="trackerModel" [ratingArr]="ratingArr"></app-tracker-statistik-alert>
+            </div>
+            <div class="col-lg-6">
+                <app-tracker-statistik-alert [trackerModel]="trackerModel" [ratingArr]="ratingArr" [displayPercent]="true"></app-tracker-statistik-alert>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <div class="alert alert-secondary mb-3 mb-lg-0">
+                    <h2 class="h6 text-center">Ditt snittbetyg</h2>
+                    <p class="d-inline mr-2">
+                        Givet följande poängsättning: 
+                    </p>
+                    <ul class="list-unstyled list-inline d-inline mb-0 app-move-up-1px">
+                        <li *ngFor="let rating of ratingArr" class="list-inline-item">
+                            <app-rating-badge [ratingForSelectedDay]="rating" [smallText]="true" [renderPointsInstead]="true"></app-rating-badge>
+                        </li>
+                    </ul>
+                    <p class="mb-0">
+                        <span class="d-block">Så är ditt snittbetyg: {{ currentAvarageRating }}</span>
+                        <span class="d-block">Ditt förra snittbetyg: {{ prevAvarageRating }}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-3 mt-lg-0 text-center">
+                <span [attr.data-feather]="moodIcon" class="app-mood-icon" appFeatherIcon *ngIf="!!moodIcon"></span>
+            </div>
+        </div>
+    </div>
+</div>

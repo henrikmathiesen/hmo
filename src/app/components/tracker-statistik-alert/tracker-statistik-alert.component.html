@@ -1,0 +1,16 @@
+<div class="alert alert-secondary mb-3 mb-lg-0">
+    <h2 class="h6">{{ label }}</h2>
+    <ul class="list-unstyled mb-0">
+        <li *ngFor="let rating of ratingArr" class="py-1 d-flex justify-content-between">
+            <span>
+                <app-rating-badge [ratingForSelectedDay]="rating" [smallText]="true"></app-rating-badge>
+            </span>
+            <span *ngIf="!displayPercent">
+                {{ rating | trackerStatistikAntalDagar: trackerModel }}
+            </span>
+            <span *ngIf="displayPercent">
+                {{ rating | trackerStatistikProcentDagar: trackerModel | displayPercent }}
+            </span>
+        </li>
+    </ul>
+</div>

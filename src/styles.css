@@ -18,6 +18,10 @@ html, body {
     color: white;
 }
 
+.badge.small {
+    font-size: 80% !important;
+}
+
 /* Form */
 
 .app-text-area {
